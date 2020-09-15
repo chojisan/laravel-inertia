@@ -1,0 +1,18 @@
+    var Ziggy = {
+        namedRoutes: {"login":{"uri":"login","methods":["GET","HEAD"],"domain":null},"two-factor.login":{"uri":"two-factor-challenge","methods":["GET","HEAD"],"domain":null},"logout":{"uri":"logout","methods":["POST"],"domain":null},"password.request":{"uri":"forgot-password","methods":["GET","HEAD"],"domain":null},"password.email":{"uri":"forgot-password","methods":["POST"],"domain":null},"password.reset":{"uri":"reset-password\/{token}","methods":["GET","HEAD"],"domain":null},"password.update":{"uri":"reset-password","methods":["POST"],"domain":null},"register":{"uri":"register","methods":["GET","HEAD"],"domain":null},"profile.show":{"uri":"user\/profile","methods":["GET","HEAD"],"domain":null},"other-browser-sessions.destroy":{"uri":"user\/other-browser-sessions","methods":["DELETE"],"domain":null},"current-user.destroy":{"uri":"user","methods":["DELETE"],"domain":null},"api-tokens.index":{"uri":"user\/api-tokens","methods":["GET","HEAD"],"domain":null},"api-tokens.store":{"uri":"user\/api-tokens","methods":["POST"],"domain":null},"api-tokens.update":{"uri":"user\/api-tokens\/{token}","methods":["PUT"],"domain":null},"api-tokens.destroy":{"uri":"user\/api-tokens\/{token}","methods":["DELETE"],"domain":null},"teams.create":{"uri":"teams\/create","methods":["GET","HEAD"],"domain":null},"teams.store":{"uri":"teams","methods":["POST"],"domain":null},"teams.show":{"uri":"teams\/{team}","methods":["GET","HEAD"],"domain":null},"teams.update":{"uri":"teams\/{team}","methods":["PUT"],"domain":null},"teams.destroy":{"uri":"teams\/{team}","methods":["DELETE"],"domain":null},"current-team.update":{"uri":"current-team","methods":["PUT"],"domain":null},"team-members.store":{"uri":"teams\/{team}\/members","methods":["POST"],"domain":null},"team-members.update":{"uri":"teams\/{team}\/members\/{user}","methods":["PUT"],"domain":null},"team-members.destroy":{"uri":"teams\/{team}\/members\/{user}","methods":["DELETE"],"domain":null},"dashboard":{"uri":"dashboard","methods":["GET","HEAD"],"domain":null},"organizations":{"uri":"organizations","methods":["GET","HEAD"],"domain":null},"organizations.create":{"uri":"organizations\/create","methods":["GET","HEAD"],"domain":null},"organizations.store":{"uri":"organizations","methods":["POST"],"domain":null},"organizations.edit":{"uri":"organizations\/{organization}\/edit","methods":["GET","HEAD"],"domain":null},"organizations.update":{"uri":"organizations\/{organization}","methods":["PUT"],"domain":null},"organizations.destroy":{"uri":"organizations\/{organization}","methods":["DELETE"],"domain":null},"organizations.restore":{"uri":"organizations\/{organization}\/restore","methods":["PUT"],"domain":null},"contacts":{"uri":"contacts","methods":["GET","HEAD"],"domain":null},"contacts.create":{"uri":"contacts\/create","methods":["GET","HEAD"],"domain":null},"contacts.store":{"uri":"contacts","methods":["POST"],"domain":null},"contacts.edit":{"uri":"contacts\/{contact}\/edit","methods":["GET","HEAD"],"domain":null},"contacts.update":{"uri":"contacts\/{contact}","methods":["PUT"],"domain":null},"contacts.destroy":{"uri":"contacts\/{contact}","methods":["DELETE"],"domain":null},"contacts.restore":{"uri":"contacts\/{contact}\/restore","methods":["PUT"],"domain":null},"reports":{"uri":"reports","methods":["GET","HEAD"],"domain":null}},
+        baseUrl: 'http://localhost/',
+        baseProtocol: 'http',
+        baseDomain: 'localhost',
+        basePort: false,
+        defaultParameters: []
+    };
+
+    if (typeof window !== 'undefined' && typeof window.Ziggy !== 'undefined') {
+        for (var name in window.Ziggy.namedRoutes) {
+            Ziggy.namedRoutes[name] = window.Ziggy.namedRoutes[name];
+        }
+    }
+
+    export {
+        Ziggy
+    }
