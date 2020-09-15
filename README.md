@@ -54,10 +54,10 @@ In order to ensure that the Laravel community is welcoming to all, please review
 
 ## Applications
 
-Laravel Sanctum
-Laravel Jetstream
-Inertiajs
-Inertia CMS
+-   Laravel Sanctum
+-   Laravel Jetstream
+-   Inertiajs
+-   Inertia CMS
 
 ## Security Vulnerabilities
 
