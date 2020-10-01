@@ -28,7 +28,25 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'account_id', 'name', 'first_name', 'last_name', 'email', 'password',
+        'account_id',
+        'username',
+        'slug',
+        'name',
+        'name_title',
+        'first_name',
+        'middle_name',
+        'last_name',
+        'name_extension',
+        'email',
+        'password',
+        'gender',
+        'birth_date',
+        'mobile_number',
+        'phone_number',
+        'owner',
+        'is_superuser',
+        'is_staff',
+        'is_active',
     ];
 
     /**
@@ -50,7 +68,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'birth_date' => 'date',
         'owner' => 'boolean',
+        'is_superuser' => 'boolean',
+        'is_staff' => 'boolean',
+        'is_active' => 'boolean',
     ];
 
     /**
