@@ -317,7 +317,7 @@
             </div>
         </nav>
 
-        <div class="h-screen flex dark:bg-gray-900">
+        <div class="z-10 h-screen flex dark:bg-gray-900">
             <!-- Page Sidebar -->
             <aside
                 class="sidebar flex-shrink-0 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block"
