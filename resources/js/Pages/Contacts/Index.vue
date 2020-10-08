@@ -63,7 +63,7 @@
                                 :key="contact.id"
                                 class="hover:bg-gray-100 focus-within:bg-gray-100"
                             >
-                                <td class="border-t">
+                                <td class="border-b border-gray-200 text-sm">
                                     <inertia-link
                                         class="px-5 py-5"
                                         :href="
@@ -117,7 +117,7 @@
                                     class="border-b border-gray-200 text-sm w-px"
                                 >
                                     <inertia-link
-                                        class="px-5 py-5"
+                                        class="py-5 px-5 flex items-center"
                                         :href="
                                             route('contacts.edit', contact.id)
                                         "
