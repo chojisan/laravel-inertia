@@ -10,7 +10,7 @@ module.exports = {
     ],
 
     theme: {
-        themeVariants: ["dark"],
+        /* themeVariants: ["dark"],
         customForms: theme => ({
             default: {
                 "input, textarea": {
@@ -19,13 +19,13 @@ module.exports = {
                     }
                 }
             }
-        }),
+        }), */
         extend: {
             fontFamily: {
                 sans: ["Nunito", ...defaultTheme.fontFamily.sans]
             }
-        },
-        colors: {
+        }
+        /* colors: {
             transparent: "transparent",
             white: "#ffffff",
             black: "#000000",
@@ -169,7 +169,7 @@ module.exports = {
                 "800": "#99154b",
                 "900": "#751a3d"
             }
-        }
+        } */
         /* boxShadow: theme => ({
             outline: "0 0 0 2px " + theme("colors.indigo.500")
         }),
@@ -177,7 +177,7 @@ module.exports = {
     },
 
     variants: {
-        backgroundColor: [
+        /* backgroundColor: [
             "hover",
             "focus",
             "active",
@@ -201,7 +201,7 @@ module.exports = {
         placeholderColor: ["focus", "dark", "dark:focus"],
         borderColor: ["focus", "hover", "dark", "dark:focus", "dark:hover"],
         divideColor: ["dark"],
-        boxShadow: ["focus", "dark:focus"],
+        boxShadow: ["focus", "dark:focus"], */
         opacity: ["responsive", "hover", "focus", "disabled"]
         /* fill: ["responsive", "hover", "focus", "group-hover"],
         textColor: ["responsive", "hover", "focus", "group-hover"],
@@ -209,8 +209,8 @@ module.exports = {
     },
 
     plugins: [
-        require("@tailwindcss/ui"),
-        require("tailwindcss-multi-theme"),
+        require("@tailwindcss/ui")
+        /* require("tailwindcss-multi-theme"),
         require("@tailwindcss/custom-forms"),
         plugin(({ addUtilities, e, theme, variants }) => {
             const newUtilities = {};
@@ -228,6 +228,6 @@ module.exports = {
             });
 
             addUtilities(newUtilities, variants("boxShadow"));
-        })
+        }) */
     ]
 };
