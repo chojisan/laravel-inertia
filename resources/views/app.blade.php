@@ -18,7 +18,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         @routes
     </head>
-    <body class="font-sans antialiased overflow-hidden">
+    <body>
         @inertia
     </body>
 </html>
