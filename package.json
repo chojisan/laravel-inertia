@@ -17,19 +17,19 @@
         "axios": "^0.20",
         "cross-env": "^7.0",
         "laravel-jetstream": "^0.1.2",
-        "laravel-mix": "^5.0.5",
+        "laravel-mix": "^5.0.6",
         "lodash": "^4.17.20",
         "portal-vue": "^2.1.7",
         "postcss-import": "^12.0.1",
         "postcss-nesting": "^7.0.1",
         "resolve-url-loader": "^3.1.1",
-        "tailwindcss": "^1.8.10",
+        "tailwindcss": "^1.8.12",
         "vue": "^2.6.12",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "momentjs": "^2.0.0",
+        "moment": "^2.29.1",
         "popper.js": "^1.16.1",
         "tailwindcss-multi-theme": "^1.0.3",
         "vue-meta": "^2.4.0"
