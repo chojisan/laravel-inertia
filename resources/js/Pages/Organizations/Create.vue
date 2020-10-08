@@ -1,23 +1,23 @@
 <template>
-    <app-layout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                <inertia-link
-                    class="text-indigo-400 hover:text-indigo-600"
-                    :href="route('organizations')"
-                    >Organizations</inertia-link
-                >
-                <span class="text-indigo-400 font-medium">/</span> Create
-            </h2>
-        </template>
+  <app-layout>
+    <template #header>
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <inertia-link
+          class="text-indigo-400 hover:text-indigo-600"
+          :href="route('organizations')"
+          >Organizations</inertia-link
+        >
+        <span class="text-indigo-400 font-medium">/</span> Create
+      </h2>
+    </template>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <organization-form :form="form" />
-            </div>
-        </div>
+    <div class="py-12">
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <organization-form :form="form" />
+      </div>
+    </div>
 
-        <!-- <div class="py-12">
+    <!-- <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white rounded shadow overflow-hidden max-w-3xl">
                     <form @submit.prevent="submit">
@@ -84,7 +84,7 @@
                 </div>
             </div>
         </div> -->
-    </app-layout>
+  </app-layout>
 </template>
 
 <script>
@@ -96,41 +96,41 @@ import JetButton from "./../../Jetstream/Button";
 import OrganizationForm from "./OrginizationForm";
 
 export default {
-    metaInfo: { title: "Create Organization" },
-    components: {
-        LoadingButton,
-        SelectInput,
-        TextInput,
-        AppLayout,
-        JetButton,
-        OrganizationForm
-    },
-    props: {
-        errors: Object
-    },
-    //remember: "form",
-    data() {
-        return {
-            sending: false,
-            form: this.$inertia.form({
-                name: null,
-                email: null,
-                phone: null,
-                address: null,
-                city: null,
-                region: null,
-                country: null,
-                postal_code: null
-            })
-        };
-    },
-    methods: {
-        submit() {
-            this.sending = true;
-            this.$inertia
-                .post(this.route("organizations.store"), this.form)
-                .then(() => (this.sending = false));
-        }
+  metaInfo: { title: "Create Organization" },
+  components: {
+    LoadingButton,
+    SelectInput,
+    TextInput,
+    AppLayout,
+    JetButton,
+    OrganizationForm
+  },
+  props: {
+    errors: Object
+  },
+  //remember: "form",
+  data() {
+    return {
+      sending: false,
+      form: this.$inertia.form({
+        name: null,
+        email: null,
+        phone: null,
+        address: null,
+        city: null,
+        region: null,
+        country: null,
+        postal_code: null
+      })
+    };
+  },
+  methods: {
+    submit() {
+      this.sending = true;
+      this.$inertia
+        .post(this.route("organizations.store"), this.form)
+        .then(() => (this.sending = false));
     }
+  }
 };
 </script>
