@@ -218,7 +218,8 @@ export default {
     },
     data() {
         return {
-            showingNavigationDropdown: false
+            showingNavigationDropdown: false,
+            sidebarOpen: false
         };
     },
     methods: {
