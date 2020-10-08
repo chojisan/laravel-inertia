@@ -67,7 +67,7 @@
 
     <!-- Hero Icons -->
     <svg
-        v-else-if="name === 'cheveron-down'"
+        v-else-if="name === 'chevron-down'"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -82,7 +82,7 @@
     </svg>
 
     <svg
-        v-else-if="name === 'cheveron-up'"
+        v-else-if="name === 'chevron-up'"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -97,7 +97,7 @@
     </svg>
 
     <svg
-        v-else-if="name === 'cheveron-right'"
+        v-else-if="name === 'chevron-right'"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -112,7 +112,7 @@
     </svg>
 
     <svg
-        v-else-if="name === 'cheveron-left'"
+        v-else-if="name === 'chevron-left'"
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
