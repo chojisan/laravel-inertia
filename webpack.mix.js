@@ -1,9 +1,9 @@
 const mix = require("laravel-mix");
-const cssImport = require("postcss-import");
-const cssNesting = require("postcss-nesting");
+// const cssImport = require("postcss-import");
+// const cssNesting = require("postcss-nesting");
 const path = require("path");
-const purgecss = require("@fullhuman/postcss-purgecss");
-const tailwindcss = require("tailwindcss");
+// const purgecss = require("@fullhuman/postcss-purgecss");
+// const tailwindcss = require("tailwindcss");
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -21,7 +21,7 @@ mix.js("resources/js/app.js", "public/js")
         require("tailwindcss")
     ])
     .webpackConfig({
-        output: { chunkFilename: "js/[name].js?id=[chunkhash]" },
+        //output: { chunkFilename: "js/[name].js?id=[chunkhash]" },
         resolve: {
             alias: {
                 vue$: "vue/dist/vue.runtime.esm.js",
