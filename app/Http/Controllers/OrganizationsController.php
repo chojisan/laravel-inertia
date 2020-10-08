@@ -12,12 +12,15 @@ class OrganizationsController extends Controller
 {
     public function index()
     {
+        $perPage = 10;
+
         return Inertia::render('Organizations/Index', [
+            'perPage' => $perPage,
             'filters' => Request::all('search', 'trashed'),
             'organizations' => Auth::user()->account->organizations()
                 ->orderBy('name')
                 ->filter(Request::only('search', 'trashed'))
-                ->paginate()
+                ->paginate($perPage)
                 ->only('id', 'name', 'phone', 'city', 'deleted_at'),
         ]);
     }

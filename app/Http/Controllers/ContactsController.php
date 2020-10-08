@@ -13,13 +13,16 @@ class ContactsController extends Controller
 {
     public function index()
     {
+        $perPage = 10;
+
         return Inertia::render('Contacts/Index', [
+            'perPage' => $perPage,
             'filters' => Request::all('search', 'trashed'),
             'contacts' => Auth::user()->account->contacts()
                 ->with('organization')
                 ->orderByName()
                 ->filter(Request::only('search', 'trashed'))
-                ->paginate()
+                ->paginate($perPage)
                 ->transform(function ($contact) {
                     return [
                         'id' => $contact->id,
