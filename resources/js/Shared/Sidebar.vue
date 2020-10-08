@@ -38,26 +38,8 @@
                 class="mt-1"
                 href="/dashboard"
                 :active="$page.currentRouteName == 'dashboard'"
-                ><svg
-                    class="inline-block w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                    ></path>
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                    ></path></svg
-                ><span class="mx-3">Dashboard</span></jet-responsive-nav-link
+                ><icon name="chart-pie" class="w-5 h-5 inline-block" />
+                <span class="mx-3">Dashboard</span></jet-responsive-nav-link
             >
 
             <div class="my-px">
@@ -70,26 +52,10 @@
                 class="mt-1"
                 href="/organizations"
                 :active="$page.currentRouteName == 'organizations'"
-                ><svg
-                    class="inline-block w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                    ></path>
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                    ></path></svg
-                ><span class="mx-3"
+                ><icon
+                    name="office-building"
+                    class="w-5 h-5 inline-block"
+                /><span class="mx-3"
                     >Organizations</span
                 ></jet-responsive-nav-link
             >
@@ -98,52 +64,20 @@
                 class="mt-1"
                 href="/contacts"
                 :active="$page.currentRouteName == 'contacts'"
-                ><svg
-                    class="inline-block w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                    ></path>
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                    ></path></svg
-                ><span class="mx-3">Contacts</span></jet-responsive-nav-link
+                ><icon name="briefcase" class="w-5 h-5 inline-block" /><span
+                    class="mx-3"
+                    >Contacts</span
+                ></jet-responsive-nav-link
             >
 
             <jet-responsive-nav-link
                 class="mt-1"
                 href="/reports"
                 :active="$page.currentRouteName == 'reports'"
-                ><svg
-                    class="inline-block w-5 h-5"
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"
-                    ></path>
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"
-                    ></path></svg
-                ><span class="mx-3">Reports</span></jet-responsive-nav-link
+                ><icon
+                    name="chart-square-bar"
+                    class="w-5 h-5 inline-block"
+                /><span class="mx-3">Reports</span></jet-responsive-nav-link
             >
         </nav>
     </div>
@@ -151,10 +85,12 @@
 
 <script>
 import JetResponsiveNavLink from "@/Jetstream/ResponsiveNavLink";
+import Icon from "@/Shared/Icon";
 
 export default {
     components: {
-        JetResponsiveNavLink
+        JetResponsiveNavLink,
+        Icon
     },
     data() {
         return {
