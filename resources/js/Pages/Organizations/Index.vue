@@ -123,13 +123,13 @@
 </template>
 
 <script>
-import Icon from "@/Shared/Icon";
-import AppLayout from "@/Layouts/AppLayout";
+import Icon from "./../../Shared/Icon";
+import AppLayout from "./../../Layouts/AppLayout";
 import mapValues from "lodash/mapValues";
-import Pagination from "@/Shared/Pagination";
+import Pagination from "./../../Shared/Pagination";
 import pickBy from "lodash/pickBy";
-import SearchFilter from "@/Shared/SearchFilter";
-import LinkButton from "@/Shared/LinkButton";
+import SearchFilter from "./../../Shared/SearchFilter";
+import LinkButton from "./../../Shared/LinkButton";
 import throttle from "lodash/throttle";
 
 export default {

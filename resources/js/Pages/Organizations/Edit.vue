@@ -186,15 +186,15 @@
 </template>
 
 <script>
-import Icon from "@/Shared/Icon";
-import AppLayout from "@/Layouts/AppLayout";
-import LoadingButton from "@/Shared/LoadingButton";
-import SelectInput from "@/Shared/SelectInput";
-import TextInput from "@/Shared/TextInput";
-import TrashedMessage from "@/Shared/TrashedMessage";
+import Icon from "./../../Shared/Icon";
+import AppLayout from "./../../Layouts/AppLayout";
+import LoadingButton from "./../../Shared/LoadingButton";
+import SelectInput from "./../../Shared/SelectInput";
+import TextInput from "./../../Shared/TextInput";
+import TrashedMessage from "./../../Shared/TrashedMessage";
 import OrganizationForm from "./OrginizationForm";
 import DeleteOrganizationForm from "./DeleteOrganizationForm";
-import JetSectionBorder from "@/Jetstream/SectionBorder";
+import JetSectionBorder from "./../../Jetstream/SectionBorder";
 
 export default {
     metaInfo() {

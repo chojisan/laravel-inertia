@@ -117,11 +117,11 @@
 </template>
 
 <script>
-import AppLayout from "@/Layouts/AppLayout";
-import LoadingButton from "@/Shared/LoadingButton";
-import SelectInput from "@/Shared/SelectInput";
-import TextInput from "@/Shared/TextInput";
-import TrashedMessage from "@/Shared/TrashedMessage";
+import AppLayout from "./../../Layouts/AppLayout";
+import LoadingButton from "./../../Shared/LoadingButton";
+import SelectInput from "./../../Shared/SelectInput";
+import TextInput from "./../../Shared/TextInput";
+import TrashedMessage from "./../../Shared/TrashedMessage";
 
 export default {
     metaInfo() {

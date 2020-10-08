@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import JetDropdown from "@/Jetstream/Dropdown";
+import JetDropdown from "./../Jetstream/Dropdown";
 
 export default {
     components: {
