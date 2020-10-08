@@ -109,7 +109,7 @@
                                     class="border-b border-gray-200 text-sm w-px"
                                 >
                                     <inertia-link
-                                        class="px-5 py-5"
+                                        class="py-5 px-5 flex items-center"
                                         :href="
                                             route(
                                                 'organizations.edit',
