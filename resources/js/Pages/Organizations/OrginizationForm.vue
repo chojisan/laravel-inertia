@@ -2,16 +2,15 @@
   <div>
     <jet-form-section @submitted="submit">
       <template #title>
-        Create Organization
+        {{ title }}
       </template>
 
       <template #description>
-        API tokens allow third-party services to authenticate with our
-        application on your behalf.
+        {{ description }}
       </template>
 
       <template #form>
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-6">
           <jet-label for="name" value="Name" />
           <jet-input
             id="name"
@@ -23,7 +22,7 @@
           <jet-input-error :message="form.error('name')" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-3 sm:col-span-3">
           <jet-label for="email" value="Email" />
           <jet-input
             id="email"
@@ -35,7 +34,7 @@
           <jet-input-error :message="form.error('email')" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-3 sm:col-span-3">
           <jet-label for="phone" value="Phone" />
           <jet-input
             id="phone"
@@ -47,7 +46,7 @@
           <jet-input-error :message="form.error('phone')" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-6 sm:col-span-6">
           <jet-label for="address" value="Address" />
           <jet-input
             id="address"
@@ -59,7 +58,7 @@
           <jet-input-error :message="form.error('address')" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-3 sm:col-span-3">
           <jet-label for="city" value="City" />
           <jet-input
             id="city"
@@ -71,7 +70,19 @@
           <jet-input-error :message="form.error('city')" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-3 sm:col-span-3">
+          <jet-label for="postal_code" value="Postal Code" />
+          <jet-input
+            id="postal_code"
+            type="text"
+            class="mt-1 block w-full"
+            v-model="form.postal_code"
+            autofocus
+          />
+          <jet-input-error :message="form.error('postal_code')" class="mt-2" />
+        </div>
+
+        <div class="col-span-3 sm:col-span-3">
           <jet-label for="region" value="Region" />
           <jet-input
             id="region"
@@ -83,7 +94,7 @@
           <jet-input-error :message="form.error('region')" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-4">
+        <div class="col-span-3 sm:col-span-3">
           <jet-label for="country" value="Country" />
           <jet-input
             id="country"
@@ -93,18 +104,6 @@
             autofocus
           />
           <jet-input-error :message="form.error('country')" class="mt-2" />
-        </div>
-
-        <div class="col-span-6 sm:col-span-4">
-          <jet-label for="postal_code" value="Postal Code" />
-          <jet-input
-            id="postal_code"
-            type="text"
-            class="mt-1 block w-full"
-            v-model="form.postal_code"
-            autofocus
-          />
-          <jet-input-error :message="form.error('postal_code')" class="mt-2" />
         </div>
       </template>
       <template #actions>
@@ -126,6 +125,13 @@ import JetLabel from "./../../Jetstream/Label";
 
 export default {
   props: {
+    title: {
+      type: String
+    },
+    description: {
+      type: String,
+      default: ""
+    },
     form: {
       type: Object,
       description: "Form data"
@@ -141,10 +147,11 @@ export default {
   },
   methods: {
     submit() {
-      this.sending = true;
+      this.$emit("submit", this.form);
+      /* this.sending = true;
       this.$inertia
         .post(this.route("organizations.store"), this.form)
-        .then(() => (this.sending = false));
+        .then(() => (this.sending = false)); */
     }
   }
 };
