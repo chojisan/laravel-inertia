@@ -1,23 +1,24 @@
 {
-    "name": "nwidart/cms",
+    "name": "chojisan/cms",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Choji Takada",
+            "email": "chojitakada@gmail.com"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [],
-            "aliases": {
-
-            }
+            "aliases": {}
         }
     },
     "autoload": {
         "psr-4": {
             "Modules\\CMS\\": ""
-        }
+        },
+        "files": [
+            "Modules/Core/Helpers/helpers.php"
+        ]
     }
 }

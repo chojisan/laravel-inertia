@@ -1,18 +1,16 @@
 {
-    "name": "nwidart/core",
+    "name": "chojisan/core",
     "description": "",
     "authors": [
         {
-            "name": "Nicolas Widart",
-            "email": "n.widart@gmail.com"
+            "name": "Choji Takada",
+            "email": "chojitakada@gmail.com"
         }
     ],
     "extra": {
         "laravel": {
             "providers": [],
-            "aliases": {
-
-            }
+            "aliases": {}
         }
     },
     "autoload": {
