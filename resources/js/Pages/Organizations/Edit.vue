@@ -17,7 +17,7 @@
         <trashed-message
           v-if="organization.deleted_at"
           class="mb-6"
-          @restore="restore"
+          @click.native="confirmOrganizationRestoration"
         >
           This organization has been deleted.
         </trashed-message>
@@ -123,6 +123,37 @@
             </tbody>
           </table>
         </div>
+
+        <!-- Restore Organization Confirmation Modal -->
+        <jet-confirmation-modal
+          :show="confirmingOrganizationRestoration"
+          @close="confirmingOrganizationRestoration = false"
+        >
+          <template #title>
+            Restore Organization
+          </template>
+
+          <template #content>
+            Are you sure you want to restore this organization?
+          </template>
+
+          <template #footer>
+            <jet-secondary-button
+              @click.native="confirmingOrganizationRestoration = false"
+            >
+              Nevermind
+            </jet-secondary-button>
+
+            <jet-button
+              class="ml-2"
+              @click.native="restoreOrganization"
+              :class="{ 'opacity-25': form.processing }"
+              :disabled="form.processing"
+            >
+              Restore Organization
+            </jet-button>
+          </template>
+        </jet-confirmation-modal>
       </div>
     </div>
   </app-layout>
@@ -135,6 +166,10 @@ import TrashedMessage from "./../../Shared/TrashedMessage";
 import OrganizationForm from "./OrginizationForm";
 import DeleteOrganizationForm from "./DeleteOrganizationForm";
 import JetSectionBorder from "./../../Jetstream/SectionBorder";
+import JetConfirmationModal from "./../../Jetstream/ConfirmationModal";
+import JetDangerButton from "./../../Jetstream/DangerButton";
+import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
+import JetButton from "./../../Jetstream/Button";
 
 export default {
   metaInfo() {
@@ -146,7 +181,11 @@ export default {
     TrashedMessage,
     OrganizationForm,
     DeleteOrganizationForm,
-    JetSectionBorder
+    JetSectionBorder,
+    JetConfirmationModal,
+    JetDangerButton,
+    JetSecondaryButton,
+    JetButton
   },
   props: {
     errors: Object,
@@ -155,6 +194,8 @@ export default {
   //remember: "form",
   data() {
     return {
+      confirmingOrganizationRestoration: false,
+      restoring: false,
       sending: false,
       form: this.$inertia.form({
         name: this.organization.name,
@@ -175,12 +216,15 @@ export default {
         .put(this.route("organizations.update", this.organization.id), form)
         .then(() => (this.sending = false));
     },
-    restore() {
-      if (confirm("Are you sure you want to restore this organization?")) {
-        this.$inertia.put(
-          this.route("organizations.restore", this.organization.id)
-        );
-      }
+    confirmOrganizationRestoration() {
+      this.confirmingOrganizationRestoration = true;
+    },
+    restoreOrganization() {
+      this.form
+        .put(this.route("organizations.restore", this.organization.id), {
+          preserveScroll: true
+        })
+        .then(() => (this.confirmingOrganizationRestoration = false));
     }
   }
 };

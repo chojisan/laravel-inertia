@@ -17,7 +17,7 @@
         <trashed-message
           v-if="contact.deleted_at"
           class="mb-6"
-          @restore="restore"
+          @click.native="confirmContactRestoration"
         >
           This contact has been deleted.
         </trashed-message>
@@ -33,6 +33,37 @@
         <jet-section-border />
 
         <delete-contact-form class="mt-10 sm:mt-0" :contact="contact" />
+
+        <!-- Restore Contact Confirmation Modal -->
+        <jet-confirmation-modal
+          :show="confirmingContactRestoration"
+          @close="confirmingContactRestoration = false"
+        >
+          <template #title>
+            Restore Contact
+          </template>
+
+          <template #content>
+            Are you sure you want to restore this contact?
+          </template>
+
+          <template #footer>
+            <jet-secondary-button
+              @click.native="confirmingContactRestoration = false"
+            >
+              Nevermind
+            </jet-secondary-button>
+
+            <jet-button
+              class="ml-2"
+              @click.native="restoreContact"
+              :class="{ 'opacity-25': form.processing }"
+              :disabled="form.processing"
+            >
+              Restore Contact
+            </jet-button>
+          </template>
+        </jet-confirmation-modal>
       </div>
     </div>
   </app-layout>
@@ -44,6 +75,10 @@ import TrashedMessage from "./../../Shared/TrashedMessage";
 import ContactForm from "./ContactForm";
 import DeleteContactForm from "./DeleteContactForm";
 import JetSectionBorder from "./../../Jetstream/SectionBorder";
+import JetConfirmationModal from "./../../Jetstream/ConfirmationModal";
+import JetDangerButton from "./../../Jetstream/DangerButton";
+import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
+import JetButton from "./../../Jetstream/Button";
 
 export default {
   metaInfo() {
@@ -56,7 +91,11 @@ export default {
     TrashedMessage,
     ContactForm,
     DeleteContactForm,
-    JetSectionBorder
+    JetSectionBorder,
+    JetConfirmationModal,
+    JetDangerButton,
+    JetSecondaryButton,
+    JetButton
   },
   props: {
     errors: Object,
@@ -66,6 +105,8 @@ export default {
   // remember: "form",
   data() {
     return {
+      confirmingContactRestoration: false,
+      restoring: false,
       sending: false,
       form: this.$inertia.form({
         first_name: this.contact.first_name,
@@ -88,10 +129,15 @@ export default {
         .put(this.route("contacts.update", this.contact.id), this.form)
         .then(() => (this.sending = false));
     },
-    restore() {
-      if (confirm("Are you sure you want to restore this contact?")) {
-        this.$inertia.put(this.route("contacts.restore", this.contact.id));
-      }
+    confirmContactRestoration() {
+      this.confirmingContactRestoration = true;
+    },
+    restoreContact() {
+      this.form
+        .put(this.route("contacts.restore", this.contact.id), {
+          preserveScroll: true
+        })
+        .then(() => (this.confirmingContactRestoration = false));
     }
   }
 };
