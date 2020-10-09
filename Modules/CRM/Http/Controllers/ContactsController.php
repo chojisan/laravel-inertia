@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace Modules\CRM\Http\Controllers;
 
-use App\Models\Contact;
+use Modules\CRM\Entities\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
