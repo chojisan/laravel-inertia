@@ -9,6 +9,12 @@
         <form method="POST" action="{{ route('register') }}">
             @csrf
 
+
+            <div>
+                <x-jet-label value="Userame" />
+                <x-jet-input class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus autocomplete="username" />
+            </div>
+
             <div>
                 <x-jet-label value="First Name" />
                 <x-jet-input class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus autocomplete="first_name" />
