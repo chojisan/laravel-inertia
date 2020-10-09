@@ -187,7 +187,7 @@ export default {
         let query = pickBy(this.form);
         this.$inertia.replace(
           this.route(
-            "organizations",
+            "crm.organizations.index",
             Object.keys(query).length ? query : { remember: "forget" }
           )
         );
