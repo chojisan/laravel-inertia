@@ -23,6 +23,11 @@ class Tag extends Model
         return $this->belongsToMany('Modules\CMS\Entities\Article', 'cms_article_tags');
     }
 
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
     public static function search($query)
     {
         return empty($query) ? static::query()
