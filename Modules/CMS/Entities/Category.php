@@ -35,6 +35,11 @@ class Category extends Model
         return $this->hasMany('Modules\CMS\Entities\Articles');
     }
 
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
     public static function search($query)
     {
         return empty($query) ? static::query()
