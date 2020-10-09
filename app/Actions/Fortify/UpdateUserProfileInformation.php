@@ -18,6 +18,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     public function update($user, array $input)
     {
         Validator::make($input, [
+            'username' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
+            'slug' => ['required', 'string', 'max:255', Rule::unique('users')->ignore($user->id)],
             'first_name' => ['required', 'string', 'max:255'],
             'last_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
@@ -29,9 +31,17 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
         }
 
         $user->forceFill([
+            'username' => $input['username'],
+            'slug' => $input['slug'],
             'first_name' => $input['first_name'],
+            'middle_name' => $input['middle_name'],
             'last_name' => $input['last_name'],
+            'name_extension' => $input['name_extension'],
             'email' => $input['email'],
+            'gender' => $input['gender'],
+            'birth_date' => $input['birth_date'],
+            'mobile_number' => $input['mobile_number'],
+            'phone_number' => $input['phone_number'],
         ])->save();
     }
 }
