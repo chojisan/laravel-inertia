@@ -5,14 +5,13 @@
     </template>
 
     <template #description>
-      Permanently delete this organization.
+      Temporarily delete this organization.
     </template>
 
     <template #content>
       <div class="max-w-xl text-sm text-gray-600">
-        Once a team is deleted, all of its resources and data will be
-        permanently deleted. Before deleting this team, please download any data
-        or information regarding this team that you wish to retain.
+        This will temporarily delete the organization. You can still restore
+        this organization.
       </div>
 
       <div class="mt-5">
@@ -31,8 +30,9 @@
         </template>
 
         <template #content>
-          Are you sure you want to delete this organization? Once a organization
-          is deleted, all of its resources and data will be permanently deleted.
+          Are you sure you want to temporarily delete this organization? Once a
+          organization is deleted, you can still restore this by clicking
+          restore button.
         </template>
 
         <template #footer>
