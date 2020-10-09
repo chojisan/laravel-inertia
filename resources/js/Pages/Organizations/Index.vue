@@ -126,7 +126,7 @@
               </tr>
               <tr v-if="organizations.data.length === 0">
                 <td
-                  class="px-5 py-5 border-b border-gray-200 items-center text-sm"
+                  class="px-5 py-5 border-b border-gray-200 text-center items-center text-sm"
                   colspan="4"
                 >
                   No organizations found.
