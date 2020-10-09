@@ -7,13 +7,10 @@
       <admin-header />
       <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
         <div class="container mx-auto">
-          <flash-messages
-            class="w-full justify-between mx-auto py-6 px-4 sm:px-6 lg:px-8"
-          />
-
           <!-- Page Heading -->
           <header>
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+              <flash-messages />
               <slot name="header"></slot>
             </div>
           </header>
