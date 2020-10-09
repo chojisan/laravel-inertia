@@ -49,7 +49,7 @@
       <jet-responsive-nav-link
         class="mt-1"
         :href="route('crm.organizations.index')"
-        :active="$page.currentRouteName == 'organizations'"
+        :active="$page.currentRouteName == 'crm.organizations.index'"
         ><icon name="office-building" class="w-5 h-5 inline-block" /><span
           class="mx-3"
           >Organizations</span
@@ -59,7 +59,7 @@
       <jet-responsive-nav-link
         class="mt-1"
         :href="route('crm.contacts.index')"
-        :active="$page.currentRouteName == 'contacts'"
+        :active="$page.currentRouteName == 'crm.contacts.index'"
         ><icon name="briefcase" class="w-5 h-5 inline-block" /><span
           class="mx-3"
           >Contacts</span
@@ -85,10 +85,29 @@
       <jet-responsive-nav-link
         class="mt-1"
         :href="route('cms.articles.index')"
-        :active="$page.currentRouteName == 'articles'"
-        ><icon name="chart-square-bar" class="w-5 h-5 inline-block" /><span
+        :active="$page.currentRouteName == 'cms.articles.index'"
+        ><icon name="clipboard" class="w-5 h-5 inline-block" /><span
           class="mx-3"
           >Articles</span
+        ></jet-responsive-nav-link
+      >
+
+      <jet-responsive-nav-link
+        class="mt-1"
+        :href="route('cms.categories.index')"
+        :active="$page.currentRouteName == 'cms.categories.index'"
+        ><icon name="clipboard-list" class="w-5 h-5 inline-block" /><span
+          class="mx-3"
+          >Categories</span
+        ></jet-responsive-nav-link
+      >
+
+      <jet-responsive-nav-link
+        class="mt-1"
+        :href="route('cms.tags.index')"
+        :active="$page.currentRouteName == 'cms.tags.index'"
+        ><icon name="tag" class="w-5 h-5 inline-block" /><span class="mx-3"
+          >Tags</span
         ></jet-responsive-nav-link
       >
     </nav>
