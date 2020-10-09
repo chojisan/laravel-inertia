@@ -10,7 +10,7 @@
       </template>
 
       <template #form>
-        <div class="col-span-3 sm:col-span-">
+        <div class="col-span-3 sm:col-span-3">
           <jet-label for="first_name" value="First Name" />
           <jet-input
             id="first_name"
