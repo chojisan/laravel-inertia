@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasTeams;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use League\Glide\Server;
+use Modules\CRM\Entities\Account;
 
 class User extends Authenticatable
 {
