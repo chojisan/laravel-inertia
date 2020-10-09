@@ -91,7 +91,7 @@ export default {
     },
     deleteOrganization() {
       this.form.delete(
-        this.route("organizations.destroy", this.organization.id),
+        this.route("crm.organizations.destroy", this.organization.id),
         {
           preserveScroll: true
         }

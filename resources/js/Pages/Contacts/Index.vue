@@ -45,7 +45,7 @@
             </div>
           </div>
         </search-filter>
-        <link-button :link="route('contacts.create')">
+        <link-button :link="route('crm.contacts.create')">
           <span>Create Contact</span>
         </link-button>
       </div>
@@ -86,7 +86,7 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                   >
                     {{ contact.name }}
                     <icon
@@ -99,7 +99,7 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                     tabindex="-1"
                   >
                     <div v-if="contact.organization">
@@ -110,7 +110,7 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                     tabindex="-1"
                   >
                     {{ contact.city }}
@@ -119,7 +119,7 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                     tabindex="-1"
                   >
                     {{ contact.phone }}
@@ -128,7 +128,7 @@
                 <td class="border-b border-gray-200 text-sm w-px">
                   <inertia-link
                     class="py-5 px-5 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                     tabindex="-1"
                   >
                     <icon

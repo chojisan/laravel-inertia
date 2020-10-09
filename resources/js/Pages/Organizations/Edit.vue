@@ -4,7 +4,7 @@
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         <inertia-link
           class="text-indigo-400 hover:text-indigo-600"
-          :href="route('organizations')"
+          :href="route('crm.organizations.index')"
           >Organizations</inertia-link
         >
         <span class="text-indigo-400 font-medium">/</span>
@@ -71,7 +71,7 @@
                 <td class="border-t border-gray-200 text-sm">
                   <inertia-link
                     class="px-6 py-4 flex items-center focus:text-indigo-500"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                   >
                     {{ contact.name }}
                     <icon
@@ -84,7 +84,7 @@
                 <td class="border-t border-gray-200 text-sm">
                   <inertia-link
                     class="px-6 py-4 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                     tabindex="-1"
                   >
                     {{ contact.city }}
@@ -93,7 +93,7 @@
                 <td class="border-t border-gray-200 text-sm">
                   <inertia-link
                     class="px-6 py-4 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                     tabindex="-1"
                   >
                     {{ contact.phone }}
@@ -102,7 +102,7 @@
                 <td class="border-t border-gray-200 text-sm w-px">
                   <inertia-link
                     class="px-4 flex items-center"
-                    :href="route('contacts.edit', contact.id)"
+                    :href="route('crm.contacts.edit', contact.id)"
                     tabindex="-1"
                   >
                     <icon
@@ -213,7 +213,7 @@ export default {
     submit(form) {
       this.sending = true;
       this.$inertia
-        .put(this.route("organizations.update", this.organization.id), form)
+        .put(this.route("crm.organizations.update", this.organization.id), form)
         .then(() => (this.sending = false));
     },
     confirmOrganizationRestoration() {
@@ -221,7 +221,7 @@ export default {
     },
     restoreOrganization() {
       this.form
-        .put(this.route("organizations.restore", this.organization.id), {
+        .put(this.route("crm.organizations.restore", this.organization.id), {
           preserveScroll: true
         })
         .then(() => (this.confirmingOrganizationRestoration = false));

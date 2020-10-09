@@ -4,7 +4,7 @@
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         <inertia-link
           class="text-indigo-400 hover:text-indigo-600"
-          :href="route('contacts')"
+          :href="route('crm.contacts.index')"
           >Contacts</inertia-link
         >
         <span class="text-indigo-400 font-medium">/</span> Create
@@ -61,7 +61,7 @@ export default {
     submit(form) {
       this.sending = true;
       this.$inertia
-        .post(this.route("contacts.store"), form)
+        .post(this.route("crm.contacts.store"), form)
         .then(() => (this.sending = false));
     }
   }

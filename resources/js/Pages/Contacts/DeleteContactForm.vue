@@ -90,7 +90,7 @@ export default {
       this.confirmingContactDeletion = true;
     },
     deleteContact() {
-      this.form.delete(this.route("contacts.destroy", this.contact.id), {
+      this.form.delete(this.route("crm.contacts.destroy", this.contact.id), {
         preserveScroll: true
       });
     }

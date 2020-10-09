@@ -46,7 +46,7 @@
             </div>
           </div>
         </search-filter>
-        <link-button :link="route('organizations.create')">
+        <link-button :link="route('crm.organizations.create')">
           <span>Create Organization</span>
         </link-button>
       </div>
@@ -83,7 +83,7 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('organizations.edit', organization.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                   >
                     {{ organization.name }}
                     <icon
@@ -96,7 +96,7 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('organizations.edit', organization.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                     tabindex="-1"
                   >
                     {{ organization.city }}
@@ -105,7 +105,7 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('organizations.edit', organization.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                     tabindex="-1"
                   >
                     {{ organization.phone }}
@@ -114,7 +114,7 @@
                 <td class="border-b border-gray-200 text-sm w-px">
                   <inertia-link
                     class="py-5 px-5 flex items-center"
-                    :href="route('organizations.edit', organization.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                     tabindex="-1"
                   >
                     <icon

@@ -4,7 +4,7 @@
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
         <inertia-link
           class="text-indigo-400 hover:text-indigo-600"
-          :href="route('contacts')"
+          :href="route('crm.contacts.index')"
           >Edit Contacts</inertia-link
         >
         <span class="text-indigo-400 font-medium">/</span>
@@ -126,7 +126,7 @@ export default {
     submit() {
       this.sending = true;
       this.$inertia
-        .put(this.route("contacts.update", this.contact.id), this.form)
+        .put(this.route("crm.contacts.update", this.contact.id), this.form)
         .then(() => (this.sending = false));
     },
     confirmContactRestoration() {
@@ -134,7 +134,7 @@ export default {
     },
     restoreContact() {
       this.form
-        .put(this.route("contacts.restore", this.contact.id), {
+        .put(this.route("crm.contacts.restore", this.contact.id), {
           preserveScroll: true
         })
         .then(() => (this.confirmingContactRestoration = false));
