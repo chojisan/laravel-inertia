@@ -13,5 +13,6 @@
 
 Route::prefix('cms')->name('cms.')->group(function() {
     Route::resource('articles', 'ArticleController');
+    Route::resource('categories', 'CategoryController');
 
 });
