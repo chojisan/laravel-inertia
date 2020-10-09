@@ -25,8 +25,8 @@ class AddColumnToUsersTable extends Migration
             $table->string('name_extension', 25)->nullable();
             $table->string('gender')->nullable();
             $table->date('birth_date')->nullable();
-            $table->date('mobile_number')->nullable();
-            $table->date('phone_number')->nullable();
+            $table->string('mobile_number')->nullable();
+            $table->string('phone_number')->nullable();
             $table->boolean('owner')->default(false);
             $table->boolean('is_superuser')->default(false);
             $table->boolean('is_staff')->default(false);
