@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace Modules\CRM\Entities;
 
 class Account extends Model
 {
