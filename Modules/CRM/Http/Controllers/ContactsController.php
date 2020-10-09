@@ -2,6 +2,7 @@
 
 namespace Modules\CRM\Http\Controllers;
 
+use Illuminate\Routing\Controller;
 use Modules\CRM\Entities\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
