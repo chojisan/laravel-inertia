@@ -46,7 +46,7 @@ class OrganizationsController extends Controller
             ])
         );
 
-        return Redirect::route('organizations')->with('success', 'Organization created.');
+        return Redirect::route('crm.organizations.index')->with('success', 'Organization created.');
     }
 
     public function edit(Organization $organization)

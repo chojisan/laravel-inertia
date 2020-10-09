@@ -68,7 +68,7 @@ class ContactsController extends Controller
             ])
         );
 
-        return Redirect::route('contacts')->with('success', 'Contact created.');
+        return Redirect::route('crm.contacts.index')->with('success', 'Contact created.');
     }
 
     public function edit(Contact $contact)
