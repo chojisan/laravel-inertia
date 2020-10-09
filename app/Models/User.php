@@ -12,6 +12,7 @@ use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use League\Glide\Server;
 use Modules\CRM\Entities\Account;
+use Modules\CMS\Entities\Article;
 
 class User extends Authenticatable
 {
@@ -88,6 +89,11 @@ class User extends Authenticatable
     public function account()
     {
         return $this->belongsTo(Account::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 
     public function getNameAttribute()
