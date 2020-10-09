@@ -54,6 +54,11 @@ class Article extends Model
                 ->orWhere('description', 'like', '%'.$query.'%');
     }
 
+    public function scopeFilter($query, $filters)
+    {
+        return $filters->apply($query);
+    }
+
     public function getArticleImagePathAttribute()
     {
         return $this->image ? Storage::disk('public')->url($this->image) : '';
