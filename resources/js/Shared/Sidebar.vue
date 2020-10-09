@@ -75,6 +75,22 @@
           >Reports</span
         ></jet-responsive-nav-link
       >
+
+      <div class="my-px">
+        <span class="flex font-bold text-gray-500 px-5 my-4 uppercase"
+          >CMS</span
+        >
+      </div>
+
+      <jet-responsive-nav-link
+        class="mt-1"
+        :href="route('cms.articles.index')"
+        :active="$page.currentRouteName == 'articles'"
+        ><icon name="chart-square-bar" class="w-5 h-5 inline-block" /><span
+          class="mx-3"
+          >Articles</span
+        ></jet-responsive-nav-link
+      >
     </nav>
   </div>
 </template>
