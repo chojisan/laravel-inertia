@@ -25,6 +25,10 @@ class Category extends Model
         'published',
     ];
 
+    protected $appends = [
+        'category_image_path',
+    ];
+
     public function id()
     {
         return $this->id;
@@ -34,6 +38,8 @@ class Category extends Model
     {
         return $this->hasMany('Modules\CMS\Entities\Articles');
     }
+
+
 
     public function scopeFilter($query, $filters)
     {
