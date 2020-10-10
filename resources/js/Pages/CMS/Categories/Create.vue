@@ -48,14 +48,15 @@ export default {
         description: null,
         parent_id: null,
         image: null,
-        published: 0
+        published: 0,
+        category_image_path: null
       })
     };
   },
   methods: {
     submit(form) {
       this.sending = true;
-      this.$inertia
+      this.form
         .post(this.route("cms.categories.store"), form)
         .then(() => (this.sending = false));
     }
