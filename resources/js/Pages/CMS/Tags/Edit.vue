@@ -5,7 +5,7 @@
         <inertia-link
           class="text-indigo-400 hover:text-indigo-600"
           :href="route('cms.tags.index')"
-          >Edit Tags</inertia-link
+          >Tags</inertia-link
         >
         <span class="text-indigo-400 font-medium">/</span>
         {{ form.name }}
