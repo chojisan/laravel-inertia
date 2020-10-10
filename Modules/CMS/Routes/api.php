@@ -16,3 +16,10 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/cms', function (Request $request) {
     return $request->user();
 });
+
+Route::prefix('cms')
+    ->name('api.cms.')
+    ->group(function() {
+
+    Route::post('tags', 'API\TagController@store')->name('tags');
+});
