@@ -69,7 +69,7 @@
       <jet-responsive-nav-link
         class="mt-1"
         :href="route('crm.reports')"
-        :active="$page.currentRouteName == 'reports'"
+        :active="$page.currentRouteName == 'crm.reports'"
         ><icon name="chart-square-bar" class="w-5 h-5 inline-block" /><span
           class="mx-3"
           >Reports</span
