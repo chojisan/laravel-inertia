@@ -109,13 +109,18 @@
 
         <div class="col-span-3 sm:col-span-3">
           <jet-label for="tags" value="Article Tags" />
-          <jet-input
-            id="tags"
-            type="text"
-            class="mt-1 block w-full"
+          <multiselect
+            class="rounded-md shadow-sm mt-1 block w-full"
             v-model="form.tags"
-            autofocus
-          />
+            tag-placeholder="Add this as new tag"
+            placeholder="Search or add a tag"
+            label="name"
+            track-by="id"
+            :options="tags"
+            :multiple="true"
+            :taggable="true"
+            @tag="addTag"
+          ></multiselect>
         </div>
 
         <div class="col-span-3 sm:col-span-3">
@@ -175,6 +180,7 @@ import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 import SelectInput from "@/Shared/Select";
+import Multiselect from "vue-multiselect";
 
 export default {
   props: {
@@ -206,7 +212,8 @@ export default {
     JetInput,
     JetInputError,
     JetLabel,
-    SelectInput
+    SelectInput,
+    Multiselect
   },
   data() {
     return {
@@ -234,9 +241,23 @@ export default {
       reader.readAsDataURL(this.$refs.photo.files[0]);
 
       this.currentPhoto = null;
+    },
+    addTag(newTag) {
+      axios
+        .post(this.route("api.cms.tags"), { name: newTag })
+        .then(response => {
+          console.log(response);
+          this.sending = false;
+          const tag = {
+            name: response.data.name,
+            id: response.data.id
+          };
+          this.tags.push(tag);
+          this.form.tags.push(tag);
+        });
     }
   }
 };
 </script>
 
-<style></style>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
