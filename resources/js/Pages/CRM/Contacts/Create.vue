@@ -26,7 +26,7 @@
 </template>
 
 <script>
-import AppLayout from "./../../Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout";
 import ContactForm from "./ContactForm";
 
 export default {
@@ -39,7 +39,6 @@ export default {
     errors: Object,
     organizations: Array
   },
-  // remember: "form",
   data() {
     return {
       sending: false,

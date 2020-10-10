@@ -2,7 +2,7 @@
   <app-layout>
     <template #header>
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Contacts
+        Organizations
       </h2>
     </template>
 
@@ -38,6 +38,7 @@
               <option value="with">With Trashed</option>
               <option value="only">Only Trashed</option>
             </select>
+
             <div
               class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
             >
@@ -45,10 +46,11 @@
             </div>
           </div>
         </search-filter>
-        <link-button :link="route('crm.contacts.create')">
-          <span>Create Contact</span>
+        <link-button :link="route('crm.organizations.create')">
+          <span>Create Organization</span>
         </link-button>
       </div>
+
       <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
         <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
           <table class="min-w-full bg-white leading-normal">
@@ -58,11 +60,6 @@
                   class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
                 >
                   Name
-                </th>
-                <th
-                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                >
-                  Organization
                 </th>
                 <th
                   class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
@@ -79,18 +76,18 @@
             </thead>
             <tbody>
               <tr
-                v-for="contact in contacts.data"
-                :key="contact.id"
+                v-for="organization in organizations.data"
+                :key="organization.id"
                 class="hover:bg-gray-100 focus-within:bg-gray-100"
               >
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('crm.contacts.edit', contact.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                   >
-                    {{ contact.name }}
+                    {{ organization.name }}
                     <icon
-                      v-if="contact.deleted_at"
+                      v-if="organization.deleted_at"
                       name="trash"
                       class="flex-shrink-0 w-3 h-3 fill-gray-400 ml-2"
                     />
@@ -99,36 +96,25 @@
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('crm.contacts.edit', contact.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                     tabindex="-1"
                   >
-                    <div v-if="contact.organization">
-                      {{ contact.organization.name }}
-                    </div>
+                    {{ organization.city }}
                   </inertia-link>
                 </td>
                 <td class="border-b border-gray-200 text-sm">
                   <inertia-link
                     class="px-5 py-5 flex items-center"
-                    :href="route('crm.contacts.edit', contact.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                     tabindex="-1"
                   >
-                    {{ contact.city }}
-                  </inertia-link>
-                </td>
-                <td class="border-b border-gray-200 text-sm">
-                  <inertia-link
-                    class="px-5 py-5 flex items-center"
-                    :href="route('crm.contacts.edit', contact.id)"
-                    tabindex="-1"
-                  >
-                    {{ contact.phone }}
+                    {{ organization.phone }}
                   </inertia-link>
                 </td>
                 <td class="border-b border-gray-200 text-sm w-px">
                   <inertia-link
                     class="py-5 px-5 flex items-center"
-                    :href="route('crm.contacts.edit', contact.id)"
+                    :href="route('crm.organizations.edit', organization.id)"
                     tabindex="-1"
                   >
                     <icon
@@ -138,12 +124,12 @@
                   </inertia-link>
                 </td>
               </tr>
-              <tr v-if="contacts.data.length === 0">
+              <tr v-if="organizations.data.length === 0">
                 <td
                   class="px-5 py-5 border-b border-gray-200 text-center items-center text-sm"
                   colspan="4"
                 >
-                  No contacts found.
+                  No organizations found.
                 </td>
               </tr>
             </tbody>
@@ -153,7 +139,7 @@
             class="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between"
           >
             <div class="inline-flex mt-2 xs:mt-0">
-              <pagination :links="contacts.links" />
+              <pagination :links="organizations.links" />
             </div>
           </div>
         </div>
@@ -163,33 +149,35 @@
 </template>
 
 <script>
-import Icon from "./../../Shared/Icon";
-import AppLayout from "./../../Layouts/AppLayout";
+import Icon from "@/Shared/Icon";
+import AppLayout from "@/Layouts/AppLayout";
 import mapValues from "lodash/mapValues";
 import Pagination from "@/Shared/NewPagination";
 import pickBy from "lodash/pickBy";
-import SearchFilter from "./../../Shared/SearchFilter";
-import LinkButton from "./../../Shared/LinkButton";
+import SearchFilter from "@/Shared/SearchFilter";
+import LinkButton from "@/Shared/LinkButton";
 import throttle from "lodash/throttle";
 
 export default {
-  metaInfo: { title: "Contacts" },
+  metaInfo: { title: "Organizations" },
   components: {
     Icon,
     Pagination,
     AppLayout,
-    SearchFilter,
-    LinkButton
+    LinkButton,
+    SearchFilter
   },
   props: {
-    contacts: Object,
-    filters: Object
+    organizations: Object,
+    filters: Object,
+    perPage: Number
   },
   data() {
     return {
       form: {
         search: this.filters.search,
-        trashed: this.filters.trashed
+        trashed: this.filters.trashed,
+        perPage: this.perPage
       }
     };
   },
@@ -199,7 +187,7 @@ export default {
         let query = pickBy(this.form);
         this.$inertia.replace(
           this.route(
-            "crm.contacts.index",
+            "crm.organizations.index",
             Object.keys(query).length ? query : { remember: "forget" }
           )
         );

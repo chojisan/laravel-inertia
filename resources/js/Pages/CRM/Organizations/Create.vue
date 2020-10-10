@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import AppLayout from "./../../Layouts/AppLayout";
+import AppLayout from "@/Layouts/AppLayout";
 import OrganizationForm from "./OrginizationForm";
 
 export default {
@@ -37,7 +37,6 @@ export default {
   props: {
     errors: Object
   },
-  //remember: "form",
   data() {
     return {
       sending: false,

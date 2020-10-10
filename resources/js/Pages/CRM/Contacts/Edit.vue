@@ -70,15 +70,15 @@
 </template>
 
 <script>
-import AppLayout from "./../../Layouts/AppLayout";
-import TrashedMessage from "./../../Shared/TrashedMessage";
+import AppLayout from "@/Layouts/AppLayout";
+import TrashedMessage from "@/Shared/TrashedMessage";
 import ContactForm from "./ContactForm";
 import DeleteContactForm from "./DeleteContactForm";
-import JetSectionBorder from "./../../Jetstream/SectionBorder";
-import JetConfirmationModal from "./../../Jetstream/ConfirmationModal";
-import JetDangerButton from "./../../Jetstream/DangerButton";
-import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
-import JetButton from "./../../Jetstream/Button";
+import JetSectionBorder from "@/Jetstream/SectionBorder";
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal";
+import JetDangerButton from "@/Jetstream/DangerButton";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetButton from "@/Jetstream/Button";
 
 export default {
   metaInfo() {
@@ -102,7 +102,6 @@ export default {
     contact: Object,
     organizations: Array
   },
-  // remember: "form",
   data() {
     return {
       confirmingContactRestoration: false,

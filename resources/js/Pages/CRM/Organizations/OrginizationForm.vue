@@ -116,12 +116,12 @@
 </template>
 
 <script>
-import JetFormSection from "./../../Jetstream/FormSection";
-import JetActionSection from "./../../Jetstream/ActionSection";
-import JetButton from "./../../Jetstream/Button";
-import JetInput from "./../../Jetstream/Input";
-import JetInputError from "./../../Jetstream/InputError";
-import JetLabel from "./../../Jetstream/Label";
+import JetFormSection from "@/Jetstream/FormSection";
+import JetActionSection from "@/Jetstream/ActionSection";
+import JetButton from "@/Jetstream/Button";
+import JetInput from "@/Jetstream/Input";
+import JetInputError from "@/Jetstream/InputError";
+import JetLabel from "@/Jetstream/Label";
 
 export default {
   props: {
@@ -137,6 +137,7 @@ export default {
       description: "Form data"
     }
   },
+  // remember: "form",
   components: {
     JetButton,
     JetFormSection,

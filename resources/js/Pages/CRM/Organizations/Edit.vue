@@ -160,16 +160,16 @@
 </template>
 
 <script>
-import AppLayout from "./../../Layouts/AppLayout";
-import Icon from "./../../Shared/Icon";
-import TrashedMessage from "./../../Shared/TrashedMessage";
+import AppLayout from "@/Layouts/AppLayout";
+import Icon from "@/Shared/Icon";
+import TrashedMessage from "@/Shared/TrashedMessage";
 import OrganizationForm from "./OrginizationForm";
 import DeleteOrganizationForm from "./DeleteOrganizationForm";
-import JetSectionBorder from "./../../Jetstream/SectionBorder";
-import JetConfirmationModal from "./../../Jetstream/ConfirmationModal";
-import JetDangerButton from "./../../Jetstream/DangerButton";
-import JetSecondaryButton from "./../../Jetstream/SecondaryButton";
-import JetButton from "./../../Jetstream/Button";
+import JetSectionBorder from "@/Jetstream/SectionBorder";
+import JetConfirmationModal from "@/Jetstream/ConfirmationModal";
+import JetDangerButton from "@/Jetstream/DangerButton";
+import JetSecondaryButton from "@/Jetstream/SecondaryButton";
+import JetButton from "@/Jetstream/Button";
 
 export default {
   metaInfo() {
@@ -191,7 +191,6 @@ export default {
     errors: Object,
     organization: Object
   },
-  //remember: "form",
   data() {
     return {
       confirmingOrganizationRestoration: false,
