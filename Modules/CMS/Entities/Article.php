@@ -32,6 +32,10 @@ class Article extends Model
         'status'
     ];
 
+    protected $appends = [
+        'article_image_path',
+    ];
+
     public function id()
     {
         return $this->id;
@@ -40,6 +44,11 @@ class Article extends Model
     public function category()
     {
         return $this->belongsTo('Modules\CMS\Entities\Category');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User');
     }
 
     public function tags()
