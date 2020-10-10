@@ -56,9 +56,14 @@
                 </th>
                 <th
                   class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
-                  colspan="2"
                 >
                   Image
+                </th>
+                <th
+                  class="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider"
+                  colspan="2"
+                >
+                  Status
                 </th>
               </tr>
             </thead>
@@ -91,7 +96,11 @@
                     :href="route('cms.categories.edit', category.id)"
                     tabindex="-1"
                   >
-                    {{ category.parent_id }}
+                    {{
+                      category.parent_category
+                        ? category.parent_category.name
+                        : "Root"
+                    }}
                   </inertia-link>
                 </td>
                 <td class="border-b border-gray-200 text-sm">
@@ -100,7 +109,42 @@
                     :href="route('cms.categories.edit', category.id)"
                     tabindex="-1"
                   >
-                    {{ category.image }}
+                    <div class="flex-shrink-0 w-10 h-10" v-if="category.image">
+                      <img
+                        class="w-full h-full rounded-full"
+                        :src="category.category_image_path"
+                        :alt="category.name"
+                      />
+                    </div>
+                  </inertia-link>
+                </td>
+                <td class="border-b border-gray-200 text-sm">
+                  <inertia-link
+                    class="px-5 py-5 flex items-center"
+                    :href="route('cms.categories.edit', category.id)"
+                    tabindex="-1"
+                  >
+                    <span
+                      class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight"
+                      v-if="category.published"
+                    >
+                      <span
+                        aria-hidden
+                        class="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                      ></span>
+                      <span class="relative">published</span>
+                    </span>
+
+                    <span
+                      class="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight"
+                      v-else
+                    >
+                      <span
+                        aria-hidden
+                        class="absolute inset-0 bg-red-200 opacity-50 rounded-full"
+                      ></span>
+                      <span class="relative">not published</span>
+                    </span>
                   </inertia-link>
                 </td>
                 <td class="border-b border-gray-200 text-sm w-px">
@@ -167,9 +211,8 @@ export default {
   data() {
     return {
       form: {
-        search: this.filters.search
-        //trashed: this.filters.trashed,
-        //perPage: this.perPage
+        search: this.filters.search,
+        perPage: this.perPage
       }
     };
   },
