@@ -15,7 +15,7 @@ class OrganizationsController extends Controller
     {
         $perPage = 10;
 
-        return Inertia::render('Organizations/Index', [
+        return Inertia::render('CRM/Organizations/Index', [
             'perPage' => $perPage,
             'filters' => Request::all('search', 'trashed'),
             'organizations' => Auth::user()->account->organizations()
@@ -28,7 +28,7 @@ class OrganizationsController extends Controller
 
     public function create()
     {
-        return Inertia::render('Organizations/Create');
+        return Inertia::render('CRM/Organizations/Create');
     }
 
     public function store()
@@ -51,7 +51,7 @@ class OrganizationsController extends Controller
 
     public function edit(Organization $organization)
     {
-        return Inertia::render('Organizations/Edit', [
+        return Inertia::render('CRM/Organizations/Edit', [
             'organization' => [
                 'id' => $organization->id,
                 'name' => $organization->name,

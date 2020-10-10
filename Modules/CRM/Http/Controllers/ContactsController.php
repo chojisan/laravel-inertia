@@ -16,7 +16,7 @@ class ContactsController extends Controller
     {
         $perPage = 10;
 
-        return Inertia::render('Contacts/Index', [
+        return Inertia::render('CRM/Contacts/Index', [
             'perPage' => $perPage,
             'filters' => Request::all('search', 'trashed'),
             'contacts' => Auth::user()->account->contacts()
@@ -39,7 +39,7 @@ class ContactsController extends Controller
 
     public function create()
     {
-        return Inertia::render('Contacts/Create', [
+        return Inertia::render('CRM/Contacts/Create', [
             'organizations' => Auth::user()->account
                 ->organizations()
                 ->orderBy('name')
@@ -73,7 +73,7 @@ class ContactsController extends Controller
 
     public function edit(Contact $contact)
     {
-        return Inertia::render('Contacts/Edit', [
+        return Inertia::render('CRM/Contacts/Edit', [
             'contact' => [
                 'id' => $contact->id,
                 'first_name' => $contact->first_name,
