@@ -53,11 +53,8 @@ export default {
     errors: Object,
     tag: Object
   },
-  // remember: "form",
   data() {
     return {
-      confirmingContactRestoration: false,
-      restoring: false,
       sending: false,
       form: this.$inertia.form({
         name: this.tag.name
