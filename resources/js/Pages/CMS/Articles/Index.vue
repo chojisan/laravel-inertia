@@ -16,27 +16,10 @@
           <div class="relative">
             <select
               v-model="form.perPage"
-              class="appearance-none h-full rounded-l border-r block appearance-none w-full bg-white border-gray-400 text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+              class="appearance-none h-full rounded-l block appearance-none w-full bg-white text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
             >
               <option>10</option>
               <option>20</option>
-            </select>
-
-            <div
-              class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-            >
-              <icon name="chevron-down" class="h-4 w-4" />
-            </div>
-          </div>
-
-          <div class="relative">
-            <select
-              v-model="form.trashed"
-              class="appearance-none h-full sm:rounded-r-none sm:border-r-0 block appearance-none w-full bg-white text-gray-700 py-2 px-4 pr-8 leading-tight focus:outline-none"
-            >
-              <option :value="null">All</option>
-              <option value="with">With Trashed</option>
-              <option value="only">Only Trashed</option>
             </select>
 
             <div
@@ -229,9 +212,8 @@ export default {
   data() {
     return {
       form: {
-        search: this.filters.search
-        //trashed: this.filters.trashed,
-        //perPage: this.perPage
+        search: this.filters.search,
+        perPage: this.perPage
       }
     };
   },
