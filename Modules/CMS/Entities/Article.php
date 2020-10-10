@@ -36,6 +36,8 @@ class Article extends Model
         'article_image_path',
     ];
 
+    protected $with = ['tags'];
+
     public function id()
     {
         return $this->id;
