@@ -53,6 +53,7 @@ export default {
         short_description: null,
         description: null,
         category_id: null,
+        tags: [],
         image: null,
         meta_description: null,
         meta_keywords: null,
