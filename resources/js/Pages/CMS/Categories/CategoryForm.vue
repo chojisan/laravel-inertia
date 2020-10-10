@@ -51,6 +51,38 @@
         </div>
 
         <div class="col-span-6 sm:col-span-6">
+          <jet-label for="image" value="Category Image" />
+
+          <!-- Current Profile Photo -->
+          <div class="mt-2" v-show="currentPhoto">
+            <img
+              :src="form.category_image_path"
+              class="rounded-full h-20 w-20"
+            />
+          </div>
+
+          <!-- New Profile Photo Preview -->
+          <div class="mt-2" v-show="photoPreview">
+            <span
+              class="block rounded-full w-20 h-20"
+              :style="
+                'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
+                  photoPreview +
+                  '\');'
+              "
+            >
+            </span>
+          </div>
+          <input
+            id="image"
+            type="file"
+            class="mt-1 block w-full"
+            ref="photo"
+            @change="updatePhotoPreview"
+          />
+        </div>
+
+        <div class="col-span-6 sm:col-span-6">
           <input
             type="checkbox"
             id="published"
@@ -108,9 +140,31 @@ export default {
     JetLabel,
     SelectInput
   },
+  data() {
+    return {
+      currentPhoto: this.form.category_image_path
+        ? this.form.category_image_path
+        : null,
+      photoPreview: null
+    };
+  },
   methods: {
     submit() {
+      if (this.$refs.photo) {
+        this.form.image = this.$refs.photo.files[0];
+      }
       this.$emit("submit", this.form);
+    },
+    updatePhotoPreview() {
+      const reader = new FileReader();
+
+      reader.onload = e => {
+        this.photoPreview = e.target.result;
+      };
+
+      reader.readAsDataURL(this.$refs.photo.files[0]);
+
+      this.currentPhoto = null;
     }
   }
 };
