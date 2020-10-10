@@ -32,7 +32,7 @@
     </div>
     <div
       v-if="($page.flash.error || Object.keys($page.errors).length > 0) && show"
-      class="mb-8 flex items-center justify-between bg-red-500 rounded max-w-3xl"
+      class="mb-8 flex items-center justify-between bg-red-500 rounded"
     >
       <div class="flex items-center">
         <svg
