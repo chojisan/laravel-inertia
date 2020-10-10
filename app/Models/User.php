@@ -84,6 +84,7 @@ class User extends Authenticatable
      */
     protected $appends = [
         'profile_photo_url',
+        'full_name',
     ];
 
     public function account()
@@ -99,6 +100,25 @@ class User extends Authenticatable
     public function getNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
+    }
+
+    public function getFullNameAttribute()
+    {
+        $full_name = ucfirst($this->first_name);
+
+        if ($this->middle_name)
+        {
+            $full_name .= ' ' . ucfirst($this->middle_name);
+        }
+
+        $full_name .= ' ' . ucfirst($this->last_name);
+
+        if ($this->name_extension)
+        {
+            $full_name .= ' ' . strtoupper($this->name_extension);
+        }
+
+        return $full_name;
     }
 
     /* public function setPasswordAttribute($password)
