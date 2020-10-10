@@ -23,7 +23,8 @@ class CategoryController extends Controller
         return Inertia::render('CMS/Categories/Index', [
             'perPage' => $perPage,
             'filters' => Request::all('search'),
-            'categories' => Category::filter($filters)
+            'categories' => Category::with('parentCategory')
+                    ->filter($filters)
                     ->paginate($perPage)
         ]);
     }
@@ -85,7 +86,7 @@ class CategoryController extends Controller
 
         $category->update($attributes);
 
-        return redirect(route('cms.categories.index'));
+        return redirect(route('cms.categories.index'))->with('success', 'Category updated.');
     }
 
     public function destroy(Category $category)
