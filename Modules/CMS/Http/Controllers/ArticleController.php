@@ -12,6 +12,7 @@ use Modules\CMS\Entities\Tag;
 use Modules\CMS\Http\Requests\ArticleFormRequest;
 use Modules\CMS\Filters\ArticleFilters;
 use Inertia\Inertia;
+use Illuminate\Support\Arr;
 
 class ArticleController extends Controller
 {
@@ -66,8 +67,8 @@ class ArticleController extends Controller
         // Attach tags
         if(!empty($request->tags))
         {
-            $tags = collect(json_decode($request->tags));
-            $article->tags()->attach($tags->pluck('id'));
+            $tags = Arr::pluck($request->tags, 'id');
+            $article->tags()->sync($tags);
         }
 
         return redirect(route('cms.articles.index'))->with('success', 'Article created.');
@@ -105,10 +106,13 @@ class ArticleController extends Controller
         $article->update($attributes);
 
         // Attach tags
-        /* if(!empty(request('tags')))
+        if(!empty($request->tags))
         {
-            $article->tags()->attach(request('tags'));
-        } */
+            $tags = Arr::pluck($request->tags, 'id');
+            $article->tags()->sync($tags);
+        } else {
+            $article->tags()->detach();
+        }
 
         return redirect(route('cms.articles.index'))->with('success', 'Article updated.');
     }
