@@ -65,10 +65,10 @@ export default {
     };
   },
   methods: {
-    submit() {
+    submit(form) {
       this.sending = true;
       this.$inertia
-        .put(this.route("cms.tags.update", this.tag.id), this.form)
+        .put(this.route("cms.tags.update", this.tag.id), form)
         .then(() => (this.sending = false));
     }
   }
