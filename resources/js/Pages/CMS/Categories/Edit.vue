@@ -5,7 +5,7 @@
         <inertia-link
           class="text-indigo-400 hover:text-indigo-600"
           :href="route('cms.categories.index')"
-          >Edit Categories</inertia-link
+          >Categories</inertia-link
         >
         <span class="text-indigo-400 font-medium">/</span>
         {{ form.name }}
@@ -55,26 +55,41 @@ export default {
     categories: Array,
     category: Object
   },
-  // remember: "form",
   data() {
     return {
-      confirmingContactRestoration: false,
-      restoring: false,
       sending: false,
       form: this.$inertia.form({
         name: this.category.name,
         description: this.category.description,
         parent_id: this.category.parent_id,
         image: this.category.image,
-        published: this.category.published
+        published: this.category.published,
+        category_image_path: this.category.category_image_path
       })
     };
   },
   methods: {
-    submit() {
+    submit(form) {
       this.sending = true;
-      this.$inertia
-        .put(this.route("cms.categories.update", this.category.id), this.form)
+
+      const formData = new FormData();
+
+      formData.append("name", form.name);
+      formData.append("description", form.description);
+      formData.append("parent_id", form.parent_id);
+      formData.append("image", form.image);
+      formData.append("published", form.published);
+
+      console.log(formData);
+      console.log(form.name);
+      console.log(form.image);
+
+      for (var pair of formData.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
+
+      this.form
+        .put(this.route("cms.categories.update", this.category.id), form)
         .then(() => (this.sending = false));
     }
   }
