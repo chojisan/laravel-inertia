@@ -11,29 +11,29 @@
 |
 */
 
-Route::prefix('crm')->name('crm.')->group(function() {
+Route::prefix('crm')
+    ->name('crm.')
+    ->middleware('auth')
+    ->group(function() {
 
     // Organizations
 
-    Route::middleware('auth')->resource('organizations', 'OrganizationsController');
+    Route::resource('organizations', 'OrganizationsController');
 
     Route::put('organizations/{organization}/restore', 'OrganizationsController@restore')
-    ->name('organizations.restore')
-    ->middleware('auth');
+    ->name('organizations.restore');
 
 
     // Contacts
 
-    Route::middleware('auth')->resource('contacts', 'ContactsController');
+    Route::resource('contacts', 'ContactsController');
 
     Route::put('contacts/{contact}/restore', 'ContactsController@restore')
-    ->name('contacts.restore')
-    ->middleware('auth');
+    ->name('contacts.restore');
 
 
     // Reports
 
     Route::get('reports', 'ReportsController@index')
-    ->name('reports')
-    ->middleware('auth');
+    ->name('reports');
 });

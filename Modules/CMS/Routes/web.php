@@ -11,7 +11,11 @@
 |
 */
 
-Route::prefix('cms')->name('cms.')->group(function() {
+Route::prefix('cms')
+    ->name('cms.')
+    ->middleware('auth')
+    ->group(function() {
+
     Route::resource('articles', 'ArticleController');
     Route::resource('categories', 'CategoryController');
     Route::resource('tags', 'TagController');
