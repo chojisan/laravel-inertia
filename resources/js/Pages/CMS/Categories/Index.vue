@@ -78,7 +78,7 @@
                     class="px-5 py-5 flex items-center"
                     :href="route('cms.categories.edit', category.id)"
                   >
-                    {{ category.name }}
+                    {{ hypen.repeat(category.depth) }} {{ category.name }}
                   </inertia-link>
                 </td>
                 <td class="border-b border-gray-200 text-sm">
@@ -210,6 +210,7 @@ export default {
   },
   data() {
     return {
+      hypen: "-",
       form: {
         search: this.filters.search,
         perPage: this.perPage
