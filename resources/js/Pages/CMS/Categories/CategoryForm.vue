@@ -80,6 +80,7 @@
             ref="photo"
             @change="updatePhotoPreview"
           />
+          <jet-input-error :message="form.error('image')" class="mt-2" />
         </div>
 
         <div class="col-span-6 sm:col-span-6">
