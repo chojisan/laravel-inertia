@@ -82,7 +82,7 @@ export default {
     submit(form) {
       this.sending = true;
       this.form
-        .put(this.route("cms.articles.update", this.article.id), formData, {
+        .put(this.route("cms.articles.update", this.article.id), form, {
           preserveState: true
         })
         .then(() => (this.sending = false));
