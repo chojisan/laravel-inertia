@@ -246,7 +246,6 @@ export default {
       axios
         .post(this.route("api.cms.tags"), { name: newTag })
         .then(response => {
-          console.log(response);
           this.sending = false;
           const tag = {
             name: response.data.name,
