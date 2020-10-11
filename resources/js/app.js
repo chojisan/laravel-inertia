@@ -17,11 +17,11 @@ Vue.use(VueMeta);
 const app = document.getElementById("app");
 
 new Vue({
-    render: h =>
-        h(InertiaApp, {
-            props: {
-                initialPage: JSON.parse(app.dataset.page),
-                resolveComponent: name => require(`./Pages/${name}`).default //import(`./Pages/${name}`).then(module => module.default) //
-            }
-        })
+  render: h =>
+    h(InertiaApp, {
+      props: {
+        initialPage: JSON.parse(app.dataset.page),
+        resolveComponent: name => require(`./Pages/${name}`).default //import(`./Pages/${name}`).then(module => module.default) //
+      }
+    })
 }).$mount(app);
