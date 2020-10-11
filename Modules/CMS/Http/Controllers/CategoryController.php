@@ -23,7 +23,7 @@ class CategoryController extends Controller
         return Inertia::render('CMS/Categories/Index', [
             'perPage' => $perPage,
             'filters' => Request::all('search'),
-            'categories' => Category::with('parentCategory')
+            'categories' => Category::withDepth()->defaultOrder()->with('parentCategory')
                     ->filter($filters)
                     ->paginate($perPage)
         ]);
@@ -35,7 +35,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        $categories = Category::published()->get();
+        $categories = Category::published()->defaultOrder()->get();
 
         traverseFlatten($categories->toTree(), 'name');
 
@@ -65,7 +65,7 @@ class CategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        $categories = Category::published()->get();
+        $categories = Category::published()->defaultOrder()->get();
 
         traverseFlatten($categories->toTree(), 'name');
 
