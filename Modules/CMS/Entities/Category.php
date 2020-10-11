@@ -41,7 +41,7 @@ class Category extends Model
 
     public function parentCategory()
     {
-        return $this->belongsTo('Modules\CMS\Entities\Category', 'id', 'parent_id');
+        return $this->belongsTo('Modules\CMS\Entities\Category', 'parent_id', 'id');
     }
 
     public function scopeFilter($query, $filters)
