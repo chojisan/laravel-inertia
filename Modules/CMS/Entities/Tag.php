@@ -18,6 +18,11 @@ class Tag extends Model
         'slug',
     ];
 
+    public function id()
+    {
+        return $this->id;
+    }
+
     public function article()
     {
         return $this->belongsToMany('Modules\CMS\Entities\Article', 'cms_article_tags');
