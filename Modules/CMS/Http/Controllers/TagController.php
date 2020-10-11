@@ -71,7 +71,8 @@ class TagController extends Controller
     public function update(TagFormRequest $request, Tag $tag)
     {
         $tag->update([
-            'name' => $request->name
+            'name' => $request->name,
+            'slug' => $request->name
         ]);
 
         return redirect(route('cms.tags.index'))->with('success', 'Tag updated.');
