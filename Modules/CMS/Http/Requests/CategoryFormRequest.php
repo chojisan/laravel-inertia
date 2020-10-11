@@ -27,7 +27,7 @@ class CategoryFormRequest extends FormRequest
             'name' => 'required',
             'parent_id' => 'nullable',
             'description' => 'nullable',
-            'image' => 'nullable',
+            'image' => ['nullable', 'image'],
             'hidden_image' => 'nullable',
             'published' => 'nullable',
         ];

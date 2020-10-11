@@ -30,7 +30,7 @@ class ArticleFormRequest extends FormRequest
             'description' => 'nullable',
             'category_id' => 'required',
             'tags' => 'nullable',
-            'image' => 'nullable',
+            'image' => ['nullable', 'image'],
             'meta_description' => 'nullable',
             'meta_keywords' => 'nullable',
             'status' => 'required',
