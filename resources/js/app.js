@@ -7,8 +7,7 @@ import { InertiaForm } from "laravel-jetstream";
 import PortalVue from "portal-vue";
 import VueMeta from "vue-meta";
 
-Vue.config.productionTip = false;
-Vue.mixin({ methods: { route: window.route } });
+Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
