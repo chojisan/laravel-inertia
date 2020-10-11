@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import FlashMessages from "./../Shared/FlashMessages";
-import AdminHeader from "./../Shared/AdminHeader";
-import Sidebar from "./../Shared/Sidebar";
+import FlashMessages from "@/Shared/FlashMessages";
+import AdminHeader from "@/Shared/AdminHeader";
+import Sidebar from "@/Shared/Sidebar";
 
 export default {
   components: {
@@ -37,6 +37,33 @@ export default {
     AdminHeader,
     Sidebar
   },
+
+  data() {
+    return {
+      showingNavigationDropdown: false
+    };
+  },
+
+  methods: {
+    switchToTeam(team) {
+      this.$inertia.put(
+        route("current-team.update"),
+        {
+          team_id: team.id
+        },
+        {
+          preserveState: false
+        }
+      );
+    },
+
+    logout() {
+      axios.post(route("logout").url()).then(response => {
+        window.location = "/";
+      });
+    }
+  },
+
   computed: {
     path() {
       return window.location.pathname;
