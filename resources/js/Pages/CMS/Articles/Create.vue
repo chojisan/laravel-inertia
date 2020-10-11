@@ -66,7 +66,7 @@ export default {
     submit(form) {
       this.sending = true;
       this.form
-        .post(this.route("cms.articles.store"), form)
+        .post(this.route("cms.articles.store"), form, { preserveState: true })
         .then(() => (this.sending = false));
     }
   }

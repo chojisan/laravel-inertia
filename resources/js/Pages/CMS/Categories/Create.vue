@@ -57,7 +57,7 @@ export default {
     submit(form) {
       this.sending = true;
       this.form
-        .post(this.route("cms.categories.store"), form)
+        .post(this.route("cms.categories.store"), form, { preserveState: true })
         .then(() => (this.sending = false));
     }
   }

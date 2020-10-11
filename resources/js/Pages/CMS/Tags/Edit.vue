@@ -65,7 +65,9 @@ export default {
     submit(form) {
       this.sending = true;
       this.$inertia
-        .put(this.route("cms.tags.update", this.tag.id), form)
+        .put(this.route("cms.tags.update", this.tag.id), form, {
+          preserveState: true
+        })
         .then(() => (this.sending = false));
     }
   }

@@ -89,7 +89,9 @@ export default {
       }
 
       this.form
-        .put(this.route("cms.categories.update", this.category.id), form)
+        .put(this.route("cms.categories.update", this.category.id), form, {
+          preserveState: true
+        })
         .then(() => (this.sending = false));
     }
   }
