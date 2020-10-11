@@ -6,12 +6,14 @@ import { InertiaApp } from "@inertiajs/inertia-vue";
 import { InertiaForm } from "laravel-jetstream";
 import PortalVue from "portal-vue";
 import VueMeta from "vue-meta";
+import CKEditor from "@ckeditor/ckeditor5-vue";
 
 Vue.mixin({ methods: { route } });
 Vue.use(InertiaApp);
 Vue.use(InertiaForm);
 Vue.use(PortalVue);
 Vue.use(VueMeta);
+Vue.use(CKEditor);
 
 const app = document.getElementById("app");
 
