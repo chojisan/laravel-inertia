@@ -64,7 +64,7 @@ export default {
   methods: {
     submit(form) {
       this.sending = true;
-      this.$inertia
+      this.form
         .put(this.route("cms.tags.update", this.tag.id), form, {
           preserveState: true
         })

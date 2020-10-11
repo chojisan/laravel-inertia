@@ -49,7 +49,7 @@ export default {
   methods: {
     submit(form) {
       this.sending = true;
-      this.$inertia
+      this.form
         .post(this.route("cms.tags.store"), form, { preserveState: true })
         .then(() => (this.sending = false));
     }
