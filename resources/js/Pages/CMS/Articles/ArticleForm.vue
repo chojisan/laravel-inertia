@@ -48,13 +48,11 @@
 
         <div class="col-span-6 sm:col-span-6">
           <jet-label for="description" value="Description" />
-          <textarea
-            id="description"
-            type="text"
-            class="form-textarea rounded-md shadow-sm mt-1 block w-full"
+          <ckeditor
+            :editor="editor"
             v-model="form.description"
             autofocus
-          ></textarea>
+          ></ckeditor>
         </div>
 
         <div class="col-span-6 sm:col-span-6">
@@ -182,6 +180,7 @@ import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
 import SelectInput from "@/Shared/Select";
 import Multiselect from "vue-multiselect";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 export default {
   props: {
@@ -218,6 +217,7 @@ export default {
   },
   data() {
     return {
+      editor: ClassicEditor,
       currentPhoto: this.form.article_image_path
         ? this.form.article_image_path
         : null,
