@@ -14,7 +14,9 @@ class TagController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     *
+     * @param TagFilters $filters
+     * @return Inertia
      */
     public function index(TagFilters $filters)
     {
@@ -30,7 +32,7 @@ class TagController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @return Renderable
+     * @return Inertia
      */
     public function create()
     {
@@ -39,8 +41,9 @@ class TagController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     *
+     * @param TagFormRequest $request
+     * @return Redirect
      */
     public function store(TagFormRequest $request)
     {
@@ -54,8 +57,9 @@ class TagController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
+     *
+     * @param Tag $tag
+     * @return Inertia
      */
     public function edit(Tag $tag)
     {
@@ -64,9 +68,10 @@ class TagController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
+     *
+     * @param TagFormRequest $request
+     * @param Tag $tag
+     * @return Redirect
      */
     public function update(TagFormRequest $request, Tag $tag)
     {
@@ -78,6 +83,12 @@ class TagController extends Controller
         return redirect(route('cms.tags.index'))->with('success', 'Tag updated.');
     }
 
+    /**
+     * Delete the specified resource in storage.
+     *
+     * @param Tag $tag
+     * @return Redirect
+     */
     public function destroy(Tag $tag)
     {
         $tag->delete();

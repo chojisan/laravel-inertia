@@ -102,6 +102,11 @@ class CoreServiceProvider extends ServiceProvider
         return [];
     }
 
+    /**
+     * Get the publishable view paths
+     *
+     * @return array
+     */
     private function getPublishableViewPaths(): array
     {
         $paths = [];

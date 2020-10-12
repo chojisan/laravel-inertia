@@ -14,7 +14,9 @@ class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     *
+     * @param CategoryFilters $filters
+     * @return Inertia
      */
     public function index(CategoryFilters $filters)
     {
@@ -31,7 +33,7 @@ class CategoryController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @return Renderable
+     * @return Inertia
      */
     public function create()
     {
@@ -44,8 +46,9 @@ class CategoryController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     *
+     * @param CategoryFormRequest $request
+     * @return Redirect
      */
     public function store(CategoryFormRequest $request)
     {
@@ -60,8 +63,9 @@ class CategoryController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
+     *
+     * @param Category $category
+     * @return Inertia
      */
     public function edit(Category $category)
     {
@@ -74,9 +78,10 @@ class CategoryController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
+     *
+     * @param CategoryFormRequest $request
+     * @param Category $category
+     * @return Redirect
      */
     public function update(CategoryFormRequest $request, Category $category)
     {
@@ -89,6 +94,12 @@ class CategoryController extends Controller
         return redirect(route('cms.categories.index'))->with('success', 'Category updated.');
     }
 
+    /**
+     * Delete the specified resource in storage.
+     *
+     * @param Category $category
+     * @return Redirect
+     */
     public function destroy(Category $category)
     {
         $category->delete();
@@ -96,6 +107,12 @@ class CategoryController extends Controller
         return redirect(route('cms.categories.index'))->with('success', 'Category deleted.');
     }
 
+    /**
+     * Get all attributes
+     *
+     * @param [type] $request
+     * @return array $attributes
+     */
     public function attributes($request)
     {
         return [
@@ -107,6 +124,13 @@ class CategoryController extends Controller
         ];
     }
 
+    /**
+     * Upload image if it exists and append path to attribute
+     *
+     * @param [type] $request
+     * @param Array $attributes
+     * @return array $attributes
+     */
     public function uploadImage($request, $attributes)
     {
         if ($request->image)

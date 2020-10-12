@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * Add name prefix to tree.
+ *
+ * @param [type] $nodes
+ * @param [type] $name
+ * @param string $prefix
+ * @return void
+ */
 function traverseName(&$nodes, $name, $prefix = '-')
 {
     foreach ($nodes as $node) {
@@ -9,6 +17,14 @@ function traverseName(&$nodes, $name, $prefix = '-')
     }
 }
 
+/**
+ * Add name prefix and flatten the tree.
+ *
+ * @param [type] $nodes
+ * @param [type] $name
+ * @param string $prefix
+ * @return void
+ */
 function traverseFlatten($nodes, $name, $prefix = '-')
 {
     $flatten = [];

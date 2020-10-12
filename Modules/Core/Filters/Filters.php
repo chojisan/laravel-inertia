@@ -35,7 +35,6 @@ abstract class Filters
         $this->request = $request;
     }
 
-
     /**
      * Apply the filters.
      *

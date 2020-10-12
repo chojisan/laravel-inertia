@@ -16,11 +16,18 @@ use Illuminate\Support\Arr;
 
 class ArticleController extends Controller
 {
+    /**
+     * List of option for article status
+     *
+     * @var array
+     */
     public $options = [["value" => "PUBLISHED", "name" => "PUBLISHED"], ["value" => "DRAFT", "name" => "DRAFT"], ["value" => "PENDING", "name" => "PENDING"]];
 
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     *
+     * @param ArticleFilters $filters
+     * @return Inertia
      */
     public function index(ArticleFilters $filters)
     {
@@ -36,7 +43,7 @@ class ArticleController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @return Renderable
+     * @return Inertia
      */
     public function create()
     {
@@ -51,8 +58,9 @@ class ArticleController extends Controller
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     *
+     * @param ArticleFormRequest $request
+     * @return Redirect
      */
     public function store(ArticleFormRequest $request)
     {
@@ -74,8 +82,9 @@ class ArticleController extends Controller
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
+     *
+     * @param Article $article
+     * @return Inertia
      */
     public function edit(Article $article)
     {
@@ -91,9 +100,10 @@ class ArticleController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
+     *
+     * @param ArticleFormRequest $request
+     * @param Article $article
+     * @return Redirect
      */
     public function update(ArticleFormRequest $request, Article $article)
     {
@@ -118,6 +128,12 @@ class ArticleController extends Controller
         return redirect(route('cms.articles.index'))->with('success', 'Article updated.');
     }
 
+    /**
+     * Delete the specified resource in storage.
+     *
+     * @param Article $article
+     * @return Redirect
+     */
     public function destroy(Article $article)
     {
         $article->delete();
@@ -125,6 +141,12 @@ class ArticleController extends Controller
         return redirect(route('cms.articles.index'))->with('success', 'Article deleted.');
     }
 
+    /**
+     * Get all attributes
+     *
+     * @param [type] $request
+     * @return array $attributes
+     */
     public function attributes($request)
     {
         $user = auth()->id();
@@ -143,6 +165,13 @@ class ArticleController extends Controller
         ];
     }
 
+    /**
+     * Upload image if it exists and append path to attribute
+     *
+     * @param [type] $request
+     * @param Array $attributes
+     * @return array $attributes
+     */
     public function uploadImage($request, $attributes)
     {
         if ($request->image)
