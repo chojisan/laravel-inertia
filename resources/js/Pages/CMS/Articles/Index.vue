@@ -96,7 +96,7 @@
                     :href="route('cms.articles.edit', article.id)"
                     tabindex="-1"
                   >
-                    {{ article.user.full_name }}
+                    {{ article.author_relation.full_name }}
                   </inertia-link>
                 </td>
                 <td class="border-b border-gray-200 text-sm">
