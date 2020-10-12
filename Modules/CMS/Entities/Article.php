@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Modules\Core\Helpers\HasAuthor;
 use Modules\Core\Helpers\HasSlug;
+use Modules\CMS\Filters\ArticleFilters;
 
 class Article extends Model
 {
@@ -14,8 +15,18 @@ class Article extends Model
     use HasAuthor;
     use HasSlug;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'cms_articles';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'author_id',
         'category_id',
@@ -32,41 +43,92 @@ class Article extends Model
         'status'
     ];
 
+    /**
+     * The accessors to append to the model's array form.
+     *
+     * @var array
+     */
     protected $appends = [
         'article_image_path',
     ];
 
+    /**
+     * The relations to eager load on every query.
+     *
+     * @var array
+     */
     protected $with = ['authorRelation', 'category', 'tags'];
 
+    /**
+     * Article id
+     *
+     * @return $id
+     */
     public function id()
     {
         return $this->id;
     }
 
+     /**
+     * An article belongs to a category.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function category()
     {
         return $this->belongsTo('Modules\CMS\Entities\Category');
     }
 
+     /**
+     * An article has many tags.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
     public function tags()
     {
         return $this->belongstoMany('Modules\CMS\Entities\Tag', 'cms_article_tags');
     }
 
-    public static function search($query)
+    /**
+     * Get a string path for the article.
+     *
+     * @return string
+     */
+    public function path()
     {
-        return empty($query) ? static::query()
-            : static::where('title', 'like', '%'.$query.'%')
-                ->orWhere('description', 'like', '%'.$query.'%');
+        return "/articles/{$this->category->slug}/{$this->slug}";
     }
 
-    public function scopeFilter($query, $filters)
+    /**
+     * Access the article image path
+     *
+     * @return string
+     */
+    public function getArticleImagePathAttribute()
+    {
+        return $this->image ? Storage::disk('public')->url($this->image) : '';
+    }
+
+    /**
+     * Apply all relevant article filters.
+     *
+     * @param  Builder       $query
+     * @param  ArticleFilters $filters
+     * @return Builder
+     */
+    public function scopeFilter($query, ArticleFilters $filters)
     {
         return $filters->apply($query);
     }
 
-    public function getArticleImagePathAttribute()
+    /**
+     * Filter all published articles.
+     *
+     * @param  Builder       $query
+     * @return Builder
+     */
+    public function scopePublished($query)
     {
-        return $this->image ? Storage::disk('public')->url($this->image) : '';
+        return $query->where('status', 'PUBLISHED');
     }
 }

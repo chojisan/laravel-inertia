@@ -4,14 +4,21 @@ namespace Modules\Core\Entities;
 
 use App\Models\User as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use League\Glide\Server;
+use Illuminate\Notifications\Notifiable;
 use Modules\CRM\Entities\Account;
 use Modules\CMS\Entities\Article;
+use Modules\Core\Filters\UserFilters;
 
 class User extends Model
 {
     use SoftDeletes;
+    use Notifiable;
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
         'account_id',
         'username',
@@ -58,16 +65,31 @@ class User extends Model
         'full_name',
     ];
 
+    /**
+     * A user belongs to an account.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function account()
     {
         return $this->belongsTo(Account::class);
     }
 
+    /**
+     * A user has many many articles.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function articles()
     {
         return $this->hasMany(Article::class, 'author_id');
     }
 
+    /**
+     * Access the full name of the user
+     *
+     * @return string
+     */
     public function getFullNameAttribute()
     {
         $full_name = ucfirst($this->first_name);
@@ -87,28 +109,24 @@ class User extends Model
         return $full_name;
     }
 
-    /* public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = Hash::needsRehash($password) ? Hash::make($password) : $password;
-    } */
-
-    public function photoUrl(array $attributes)
-    {
-        if ($this->photo_path) {
-            return URL::to(App::make(Server::class)->fromPath($this->photo_path, $attributes));
-        }
-    }
-
-    public function isDemoUser()
-    {
-        return $this->email === 'johndoe@example.com';
-    }
-
+    /**
+     * User order by last_name and first_name
+     *
+     * @param [type] $query
+     * @return void
+     */
     public function scopeOrderByName($query)
     {
         $query->orderBy('last_name')->orderBy('first_name');
     }
 
+    /**
+     * Get user role
+     *
+     * @param [type] $query
+     * @param [type] $role
+     * @return void
+     */
     public function scopeWhereRole($query, $role)
     {
         switch ($role) {
@@ -117,22 +135,15 @@ class User extends Model
         }
     }
 
-    public function scopeFilter($query, array $filters)
+    /**
+     * Apply all relevant tag filters.
+     *
+     * @param  Builder       $query
+     * @param  UserFilters $filters
+     * @return Builder
+     */
+    public function scopeFilter($query, UserFilters $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('first_name', 'like', '%'.$search.'%')
-                    ->orWhere('last_name', 'like', '%'.$search.'%')
-                    ->orWhere('email', 'like', '%'.$search.'%');
-            });
-        })->when($filters['role'] ?? null, function ($query, $role) {
-            $query->whereRole($role);
-        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
-            if ($trashed === 'with') {
-                $query->withTrashed();
-            } elseif ($trashed === 'only') {
-                $query->onlyTrashed();
-            }
-        });
+        return $filters->apply($query);
     }
 }
