@@ -2,6 +2,7 @@
 
 namespace Modules\CRM\Entities;
 
+use Modules\CRM\Entities\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Organization extends Model

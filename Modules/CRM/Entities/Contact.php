@@ -2,7 +2,9 @@
 
 namespace Modules\CRM\Entities;
 
+use Modules\CRM\Entities\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Modules\CRM\Entities\Organization;
 
 class Contact extends Model
 {
