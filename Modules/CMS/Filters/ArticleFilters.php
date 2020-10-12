@@ -3,7 +3,7 @@
 namespace Modules\CMS\Filters;
 
 use Modules\Core\Filters\Filters;
-use App\Models\User;
+use Modules\Core\Entities\User;
 
 class ArticleFilters extends Filters
 {
@@ -17,9 +17,11 @@ class ArticleFilters extends Filters
 
     public function by($username)
     {
-        $user = User::where('name', $username)->firstOrFail();
+        $user = User::where('first_name', 'like', "%{$username}%" )
+                        ->orWhere('last_name', 'like', "%{$username}%" )
+                        ->firstOrFail();
 
-        return $this->builder->where('user_id', $user->id);
+        return $this->builder->where('author_id', $user->id);
     }
 
     public function title($title)
