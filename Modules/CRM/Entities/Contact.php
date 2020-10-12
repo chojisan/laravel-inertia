@@ -8,7 +8,7 @@ class Contact extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'cms_contacts';
+    protected $table = 'crm_contacts';
 
     public function organization()
     {

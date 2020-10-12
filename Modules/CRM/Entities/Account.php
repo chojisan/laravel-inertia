@@ -4,7 +4,7 @@ namespace Modules\CRM\Entities;
 
 class Account extends Model
 {
-    protected $table = 'cms_accounts';
+    protected $table = 'crm_accounts';
 
     public function users()
     {
