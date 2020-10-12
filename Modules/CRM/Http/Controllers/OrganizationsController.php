@@ -8,10 +8,17 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Modules\CRM\Filters\OrganizationFilters;
+use Modules\CRM\Http\Requests\OrganizationFormRequest;
 use Inertia\Inertia;
 
 class OrganizationsController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @param OrganizationFilters $filters
+     * @return Inertia
+     */
     public function index(OrganizationFilters $filters)
     {
         $perPage = 10;
@@ -27,29 +34,37 @@ class OrganizationsController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Inertia
+     */
     public function create()
     {
         return Inertia::render('CRM/Organizations/Create');
     }
 
-    public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param OrganizationFormRequest $request
+     * @return Redirect
+     */
+    public function store(OrganizationFormRequest $request)
     {
-        Auth::user()->account->organizations()->create(
-            Request::validate([
-                'name' => ['required', 'max:100'],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50'],
-                'address' => ['nullable', 'max:150'],
-                'city' => ['nullable', 'max:50'],
-                'region' => ['nullable', 'max:50'],
-                'country' => ['nullable', 'max:2'],
-                'postal_code' => ['nullable', 'max:25'],
-            ])
-        );
+        $attributes = $this->attributes($request);
+
+        Auth::user()->account->organizations()->create($attributes);
 
         return Redirect::route('crm.organizations.index')->with('success', 'Organization created.');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Organization $organization
+     * @return Inertia
+     */
     public function edit(Organization $organization)
     {
         return Inertia::render('CRM/Organizations/Edit', [
@@ -69,24 +84,28 @@ class OrganizationsController extends Controller
         ]);
     }
 
-    public function update(Organization $organization)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param OrganizationFormRequest $request
+     * @param Organization $organization
+     * @return Redirect
+     */
+    public function update(OrganizationFormRequest $request, Organization $organization)
     {
-        $organization->update(
-            Request::validate([
-                'name' => ['required', 'max:100'],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50'],
-                'address' => ['nullable', 'max:150'],
-                'city' => ['nullable', 'max:50'],
-                'region' => ['nullable', 'max:50'],
-                'country' => ['nullable', 'max:2'],
-                'postal_code' => ['nullable', 'max:25'],
-            ])
-        );
+        $attributes = $this->attributes($request);
+
+        $organization->update($attributes);
 
         return Redirect::back()->with('success', 'Organization updated.');
     }
 
+    /**
+     * Delete the specified resource in storage.
+     *
+     * @param Organization $organization
+     * @return void
+     */
     public function destroy(Organization $organization)
     {
         $organization->delete();
@@ -94,10 +113,36 @@ class OrganizationsController extends Controller
         return Redirect::back()->with('success', 'Organization deleted.');
     }
 
+    /**
+     * Restore specified resource in storage.
+     *
+     * @param Organization $organization
+     * @return Redirect
+     */
     public function restore(Organization $organization)
     {
         $organization->restore();
 
         return Redirect::back()->with('success', 'Organization restored.');
+    }
+
+    /**
+     * Get all attributes
+     *
+     * @param [type] $request
+     * @return array $attributes
+     */
+    public function attributes($request)
+    {
+        return [
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'city' => $request->city,
+            'region' => $request->region,
+            'country' => $request->country,
+            'postal_code' => $request->postal_code,
+        ];
     }
 }
