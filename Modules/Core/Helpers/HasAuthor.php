@@ -2,7 +2,7 @@
 
 namespace Modules\Core\Helpers;
 
-use App\Models\User;
+use Modules\Core\Entities\User;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 trait HasAuthor
@@ -19,7 +19,7 @@ trait HasAuthor
 
     public function authorRelation(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class, 'author_id');
     }
 
     public function isAuthoredBy(User $user): bool
