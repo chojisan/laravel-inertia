@@ -2,6 +2,11 @@
 
 namespace Modules\CRM\Entities;
 
+use Modules\CRM\Entities\Model;
+use Modules\Core\Entities\User;
+use Modules\CRM\Entities\Organization;
+use Modules\CRM\Entities\Contact;
+
 class Account extends Model
 {
     protected $table = 'crm_accounts';
