@@ -29,9 +29,7 @@ class ArticleController extends Controller
         return Inertia::render('CMS/Articles/Index', [
             'perPage' => $perPage,
             'filters' => Request::all('search'),
-            'articles' => Auth::user()->articles()
-                    ->with('user', 'category')
-                    ->filter($filters)
+            'articles' => Article::filter($filters)
                     ->paginate($perPage)
         ]);
     }
@@ -101,6 +99,9 @@ class ArticleController extends Controller
     {
         $attributes = $this->attributes($request);
 
+        // Remove author
+        $attributes = Arr::except($attributes, ['author_id']);
+
         $attributes = $this->uploadImage($request, $attributes);
 
         $article->update($attributes);
@@ -129,7 +130,7 @@ class ArticleController extends Controller
         $user = auth()->id();
 
         return [
-            'user_id' => $user,
+            'author_id' => $user,
             'title' => $request->title,
             'slug' => $request->title,
             'featured' => $request->featured ?: 0,
