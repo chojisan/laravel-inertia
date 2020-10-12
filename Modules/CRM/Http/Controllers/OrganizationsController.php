@@ -7,11 +7,12 @@ use Modules\CRM\Entities\Organization;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Modules\CRM\Filters\OrganizationFilters;
 use Inertia\Inertia;
 
 class OrganizationsController extends Controller
 {
-    public function index()
+    public function index(OrganizationFilters $filters)
     {
         $perPage = 10;
 
@@ -20,7 +21,7 @@ class OrganizationsController extends Controller
             'filters' => Request::all('search', 'trashed'),
             'organizations' => Auth::user()->account->organizations()
                 ->orderBy('name')
-                ->filter(Request::only('search', 'trashed'))
+                ->filter($filters)
                 ->paginate($perPage)
                 ->only('id', 'name', 'phone', 'city', 'deleted_at'),
         ]);

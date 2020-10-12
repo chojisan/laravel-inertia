@@ -7,12 +7,13 @@ use Modules\CRM\Entities\Contact;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
+use Modules\CRM\Filters\ContactFilters;
 use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 class ContactsController extends Controller
 {
-    public function index()
+    public function index(ContactFilters $filters)
     {
         $perPage = 10;
 
@@ -22,7 +23,7 @@ class ContactsController extends Controller
             'contacts' => Auth::user()->account->contacts()
                 ->with('organization')
                 ->orderByName()
-                ->filter(Request::only('search', 'trashed'))
+                ->filter($filters)
                 ->paginate($perPage)
                 ->transform(function ($contact) {
                     return [
