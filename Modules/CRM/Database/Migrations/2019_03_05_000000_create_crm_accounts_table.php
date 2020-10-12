@@ -4,11 +4,11 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAccountsTable extends Migration
+class CreateCrmAccountsTable extends Migration
 {
     public function up()
     {
-        Schema::create('accounts', function (Blueprint $table) {
+        Schema::create('crm_accounts', function (Blueprint $table) {
             $table->id();
             $table->string('name', 50);
             $table->timestamps();
@@ -22,6 +22,6 @@ class CreateAccountsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('accounts');
+        Schema::dropIfExists('crm_accounts');
     }
 }
