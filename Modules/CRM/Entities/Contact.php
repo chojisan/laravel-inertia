@@ -5,45 +5,59 @@ namespace Modules\CRM\Entities;
 use Modules\CRM\Entities\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Modules\CRM\Entities\Organization;
+use Modules\CRM\Filters\ContactFilters;
 
 class Contact extends Model
 {
     use SoftDeletes;
 
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
     protected $table = 'crm_contacts';
 
+    /**
+     * A contact belongs to organizations.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\Belongsto
+     */
     public function organization()
     {
         return $this->belongsTo(Organization::class);
     }
 
+    /**
+     * Get the  full name. Concat first_name and last_name
+     *
+     * @return void
+     */
     public function getNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
     }
 
+    /**
+     * Set order by last_name and first_name.
+     *
+     * @param [type] $query
+     * @return void
+     */
     public function scopeOrderByName($query)
     {
         $query->orderBy('last_name')->orderBy('first_name');
     }
 
-    public function scopeFilter($query, array $filters)
+    /**
+     * Apply all relevant organization filters.
+     *
+     * @param  Builder       $query
+     * @param  ContactFilters $filters
+     * @return Builder
+     */
+    public function scopeFilter($query, ContactFilters $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->where(function ($query) use ($search) {
-                $query->where('first_name', 'like', '%'.$search.'%')
-                    ->orWhere('last_name', 'like', '%'.$search.'%')
-                    ->orWhere('email', 'like', '%'.$search.'%')
-                    ->orWhereHas('organization', function ($query) use ($search) {
-                        $query->where('name', 'like', '%'.$search.'%');
-                    });
-            });
-        })->when($filters['trashed'] ?? null, function ($query, $trashed) {
-            if ($trashed === 'with') {
-                $query->withTrashed();
-            } elseif ($trashed === 'only') {
-                $query->onlyTrashed();
-            }
-        });
+        return $filters->apply($query);
     }
 }
