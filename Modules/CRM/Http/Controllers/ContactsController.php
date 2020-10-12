@@ -9,10 +9,17 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Modules\CRM\Filters\ContactFilters;
 use Illuminate\Validation\Rule;
+use Modules\CRM\Http\Requests\ContactFormRequest;
 use Inertia\Inertia;
 
 class ContactsController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     * @param ContactFilters $filters
+     * @return Inertia
+     */
     public function index(ContactFilters $filters)
     {
         $perPage = 10;
@@ -38,6 +45,11 @@ class ContactsController extends Controller
         ]);
     }
 
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return Inertia
+     */
     public function create()
     {
         return Inertia::render('CRM/Contacts/Create', [
@@ -50,28 +62,27 @@ class ContactsController extends Controller
         ]);
     }
 
-    public function store()
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param ContactFormRequest $request
+     * @return Redirect
+     */
+    public function store(ContactFormRequest $request)
     {
-        Auth::user()->account->contacts()->create(
-            Request::validate([
-                'first_name' => ['required', 'max:50'],
-                'last_name' => ['required', 'max:50'],
-                'organization_id' => ['nullable', Rule::exists('crm_organizations', 'id')->where(function ($query) {
-                    $query->where('account_id', Auth::user()->account_id);
-                })],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50'],
-                'address' => ['nullable', 'max:150'],
-                'city' => ['nullable', 'max:50'],
-                'region' => ['nullable', 'max:50'],
-                'country' => ['nullable', 'max:2'],
-                'postal_code' => ['nullable', 'max:25'],
-            ])
-        );
+        $attributes = $this->attributes($request);
+
+        Auth::user()->account->contacts()->create($attributes);
 
         return Redirect::route('crm.contacts.index')->with('success', 'Contact created.');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param Contact $contact
+     * @return Inertia
+     */
     public function edit(Contact $contact)
     {
         return Inertia::render('CRM/Contacts/Edit', [
@@ -97,28 +108,28 @@ class ContactsController extends Controller
         ]);
     }
 
-    public function update(Contact $contact)
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param ContactFormRequest $request
+     * @param Contact $contact
+     * @return Redirect
+     */
+    public function update(ContactFormRequest $request, Contact $contact)
     {
-        $contact->update(
-            Request::validate([
-                'first_name' => ['required', 'max:50'],
-                'last_name' => ['required', 'max:50'],
-                'organization_id' => ['nullable', Rule::exists('crm_organizations', 'id')->where(function ($query) {
-                    $query->where('account_id', Auth::user()->account_id);
-                })],
-                'email' => ['nullable', 'max:50', 'email'],
-                'phone' => ['nullable', 'max:50'],
-                'address' => ['nullable', 'max:150'],
-                'city' => ['nullable', 'max:50'],
-                'region' => ['nullable', 'max:50'],
-                'country' => ['nullable', 'max:2'],
-                'postal_code' => ['nullable', 'max:25'],
-            ])
-        );
+        $attributes = $this->attributes($request);
+
+        $contact->update($attributes);
 
         return Redirect::back()->with('success', 'Contact updated.');
     }
 
+    /**
+     * Delete the specified resource in storage.
+     *
+     * @param Contact $contact
+     * @return Redirect
+     */
     public function destroy(Contact $contact)
     {
         $contact->delete();
@@ -126,10 +137,38 @@ class ContactsController extends Controller
         return Redirect::back()->with('success', 'Contact deleted.');
     }
 
+    /**
+     * Restore specified resource in storage.
+     *
+     * @param Contact $contact
+     * @return Redirect
+     */
     public function restore(Contact $contact)
     {
         $contact->restore();
 
         return Redirect::back()->with('success', 'Contact restored.');
+    }
+
+    /**
+     * Get all attributes
+     *
+     * @param [type] $request
+     * @return array $attributes
+     */
+    public function attributes($request)
+    {
+        return [
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'organization_id' => $request->organization_id,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'address' => $request->address,
+            'city' => $request->city,
+            'region' => $request->region,
+            'country' => $request->country,
+            'postal_code' => $request->postal_code,
+        ];
     }
 }
