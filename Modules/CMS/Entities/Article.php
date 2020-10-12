@@ -17,7 +17,7 @@ class Article extends Model
     protected $table = 'cms_articles';
 
     protected $fillable = [
-        'user_id',
+        'author_id',
         'category_id',
         'title',
         'slug',
@@ -36,7 +36,7 @@ class Article extends Model
         'article_image_path',
     ];
 
-    protected $with = ['tags'];
+    protected $with = ['authorRelation', 'category', 'tags'];
 
     public function id()
     {
@@ -46,11 +46,6 @@ class Article extends Model
     public function category()
     {
         return $this->belongsTo('Modules\CMS\Entities\Category');
-    }
-
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User');
     }
 
     public function tags()
