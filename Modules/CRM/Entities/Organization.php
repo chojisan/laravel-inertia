@@ -8,6 +8,8 @@ class Organization extends Model
 {
     use SoftDeletes;
 
+    protected $table = 'cms_organizations';
+
     public function contacts()
     {
         return $this->hasMany(Contact::class);

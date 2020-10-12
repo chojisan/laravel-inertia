@@ -4,6 +4,8 @@ namespace Modules\CRM\Entities;
 
 class Account extends Model
 {
+    protected $table = 'cms_accounts';
+
     public function users()
     {
         return $this->hasMany(User::class);
