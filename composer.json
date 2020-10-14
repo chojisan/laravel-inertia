@@ -22,6 +22,8 @@
         "laravel/tinker": "^2.0",
         "league/glide": "^1.6",
         "nwidart/laravel-modules": "^8.0",
+        "spatie/laravel-permission": "^3.17",
+        "spatie/simple-excel": "^1.8",
         "stevebauman/purify": "^3.0",
         "tightenco/ziggy": "^0.9.4"
     },
