@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <nav class="mt-10">
+    <nav class="my-10">
       <jet-responsive-nav-link
         class="mt-1"
         href="/dashboard"
@@ -108,6 +108,22 @@
         :active="$page.currentRouteName == 'cms.tags.index'"
         ><icon name="tag" class="w-5 h-5 inline-block" /><span class="mx-3"
           >Tags</span
+        ></jet-responsive-nav-link
+      >
+
+      <div class="my-px">
+        <span class="flex font-bold text-gray-500 px-5 my-4 uppercase"
+          >Core</span
+        >
+      </div>
+
+      <jet-responsive-nav-link
+        class="mt-1"
+        :href="route('admin.roles.index')"
+        :active="$page.currentRouteName == 'admin.roles.index'"
+        ><icon name="clipboard" class="w-5 h-5 inline-block" /><span
+          class="mx-3"
+          >Roles</span
         ></jet-responsive-nav-link
       >
     </nav>
