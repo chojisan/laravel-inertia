@@ -8,11 +8,13 @@ use Illuminate\Notifications\Notifiable;
 use Modules\CRM\Entities\Account;
 use Modules\CMS\Entities\Article;
 use Modules\Core\Filters\UserFilters;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Model
 {
     use SoftDeletes;
     use Notifiable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
