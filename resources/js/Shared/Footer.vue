@@ -131,9 +131,9 @@
       <div
         class="flex flex-wrap items-center md:justify-between justify-center"
       >
-        <div class="w-full md:w-4/12 px-4 mx-auto text-center">
+        <div class="w-full md:w-6/12 px-4 mx-auto text-center">
           <div class="text-sm text-gray-600 font-semibold py-1">
-            Copyright © {{date}} Tailwind Starter Kit by
+            Copyright © {{ date }} Takada Teknolohiya. Theme by
             <a
               href="https://www.creative-tim.com"
               class="text-gray-600 hover:text-gray-900"
@@ -150,7 +150,7 @@ export default {
   data() {
     return {
       date: new Date().getFullYear()
-    }
+    };
   }
-}
+};
 </script>
