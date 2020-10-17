@@ -1,5 +1,6 @@
 {
     "Core": true,
     "CRM": true,
-    "CMS": true
+    "CMS": true,
+    "Shop": true
 }
