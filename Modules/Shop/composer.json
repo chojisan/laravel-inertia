@@ -1,0 +1,21 @@
+{
+    "name": "chojisan/shop",
+    "description": "",
+    "authors": [
+        {
+            "name": "Choji Takada",
+            "email": "chojitakada@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {}
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Shop\\": ""
+        }
+    }
+}
