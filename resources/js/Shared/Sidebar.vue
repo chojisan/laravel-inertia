@@ -126,6 +126,16 @@
           >Roles</span
         ></jet-responsive-nav-link
       >
+
+      <jet-responsive-nav-link
+        class="mt-1"
+        :href="route('admin.permissions.index')"
+        :active="$page.currentRouteName == 'admin.permissions.index'"
+        ><icon name="clipboard" class="w-5 h-5 inline-block" /><span
+          class="mx-3"
+          >Permissions</span
+        ></jet-responsive-nav-link
+      >
     </nav>
   </div>
 </template>
