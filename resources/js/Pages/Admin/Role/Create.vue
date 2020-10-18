@@ -18,6 +18,7 @@
           description="Create role description."
           :form="form"
           @submit="submit"
+          :permissions="permissions"
         />
       </div>
     </div>
@@ -35,7 +36,8 @@ export default {
     RoleForm
   },
   props: {
-    errors: Object
+    errors: Object,
+    permissions: Array
   },
   // remember: "form",
   data() {
@@ -43,7 +45,8 @@ export default {
       sending: false,
       form: this.$inertia.form({
         name: null,
-        guard_name: null
+        guard_name: null,
+        permissions: null
       })
     };
   },

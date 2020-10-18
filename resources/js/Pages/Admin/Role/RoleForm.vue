@@ -32,6 +32,19 @@
             autofocus
           />
         </div>
+
+        <div class="col-span-6 sm:col-span-6">
+          <jet-label for="permssions" value="Permissions" />
+          <multiselect
+            class="rounded-md shadow-sm mt-1 block w-full"
+            v-model="form.permissions"
+            placeholder="Search permssion"
+            label="name"
+            track-by="id"
+            :options="permissions"
+            :multiple="true"
+          ></multiselect>
+        </div>
       </template>
       <template #actions>
         <jet-button>
@@ -49,6 +62,7 @@ import JetButton from "@/Jetstream/Button";
 import JetInput from "@/Jetstream/Input";
 import JetInputError from "@/Jetstream/InputError";
 import JetLabel from "@/Jetstream/Label";
+import Multiselect from "vue-multiselect";
 
 export default {
   props: {
@@ -62,6 +76,9 @@ export default {
     form: {
       type: Object,
       description: "Form data"
+    },
+    permissions: {
+      type: Array
     }
   },
   components: {
@@ -70,7 +87,8 @@ export default {
     JetActionSection,
     JetInput,
     JetInputError,
-    JetLabel
+    JetLabel,
+    Multiselect
   },
   methods: {
     submit() {
@@ -79,3 +97,5 @@ export default {
   }
 };
 </script>
+
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

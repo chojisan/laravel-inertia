@@ -19,6 +19,7 @@
           description="Edit role description."
           :form="form"
           @submit="submit"
+          :permissions="permissions"
         />
 
         <jet-section-border />
@@ -51,7 +52,8 @@ export default {
   },
   props: {
     errors: Object,
-    role: Object
+    role: Object,
+    permissions: Array
   },
   data() {
     return {
@@ -59,7 +61,8 @@ export default {
       form: this.$inertia.form({
         _method: "PUT",
         name: this.role.name,
-        guard_name: this.role.guard_name
+        guard_name: this.role.guard_name,
+        permissions: this.role.permissions
       })
     };
   },
