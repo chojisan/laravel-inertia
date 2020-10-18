@@ -7,13 +7,14 @@ use Illuminate\Support\Facades\Request;
 use Illuminate\Routing\Controller;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Modules\Core\Http\Requests\RoleFormRequest;
 use Inertia\Inertia;
 
 class RoleController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * @return Renderable
+     * @return Inertia
      */
     public function index()
     {
@@ -29,61 +30,65 @@ class RoleController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     * @return Renderable
+     * @return Inertia
      */
     public function create()
     {
-        return view('core::create');
+        return Inertia::render('Admin/Role/Create');
     }
 
     /**
      * Store a newly created resource in storage.
-     * @param Request $request
-     * @return Renderable
+     *
+     * @param RoleFormRequest $request
+     * @return Redirect
      */
-    public function store(Request $request)
+    public function store(RoleFormRequest $request)
     {
-        //
-    }
+        $role = Role::create($request->only('name', 'guard_name'));
 
-    /**
-     * Show the specified resource.
-     * @param int $id
-     * @return Renderable
-     */
-    public function show($id)
-    {
-        return view('core::show');
+        return redirect()->back();
+        // return redirect(route('admin.roles.index'))->with('success', 'Role created.');
     }
 
     /**
      * Show the form for editing the specified resource.
-     * @param int $id
-     * @return Renderable
+     *
+     * @param Role $role
+     * @return Inertia
      */
-    public function edit($id)
+    public function edit(Role $role)
     {
-        return view('core::edit');
+        return Inertia::render('Admin/Role/Edit', [
+            'role' => $role
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
-     * @param Request $request
-     * @param int $id
-     * @return Renderable
+     *
+     * @param RoleFormRequest $request
+     * @param Role $role
+     * @return Redirect
      */
-    public function update(Request $request, $id)
+    public function update(RoleFormRequest $request, Role $role)
     {
-        //
+        $role->update($request->only('name', 'guard_name'));
+
+        return redirect()->back();
+        // return redirect(route('admin.roles.index'))->with('success', 'Role updated.');
     }
 
     /**
      * Remove the specified resource from storage.
-     * @param int $id
-     * @return Renderable
+     *
+     * @param Role $role
+     * @return Redirect
      */
-    public function destroy($id)
+    public function destroy(Role $role)
     {
-        //
+        $role->delete();
+
+        return redirect(route('admin.roles.index'))->with('success', 'Role deleted.');
     }
 }
