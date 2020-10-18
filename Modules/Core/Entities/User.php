@@ -98,6 +98,16 @@ class User extends Model
     }
 
     /**
+     * Check if the use is an admin.
+     *
+     * @return boolean
+     */
+    public function isSuperAdmin()
+    {
+        return $this->is_superuser || ($this->hasRole('Super Admin') ? true : null) ;
+    }
+
+    /**
      * Access the full name of the user
      *
      * @return string
