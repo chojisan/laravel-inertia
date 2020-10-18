@@ -108,6 +108,17 @@ class User extends Model
     }
 
     /**
+     * Check if user id matches the model id
+     *
+     * @param self $model
+     * @return boolean
+     */
+    public function matches(self $model): bool
+    {
+        return $this->id() === $model->id();
+    }
+
+    /**
      * Access the full name of the user
      *
      * @return string
