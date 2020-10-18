@@ -2,17 +2,15 @@
 
 namespace Modules\CMS\Http\Controllers;
 
-use Illuminate\Contracts\Support\Renderable;
-use Illuminate\Support\Facades\Auth;
+use Modules\Core\Http\Controllers\CoreController as Controller;
 use Illuminate\Support\Facades\Request;
-use Illuminate\Routing\Controller;
 use Modules\CMS\Entities\Article;
 use Modules\CMS\Entities\Category;
 use Modules\CMS\Entities\Tag;
 use Modules\CMS\Http\Requests\ArticleFormRequest;
 use Modules\CMS\Filters\ArticleFilters;
-use Inertia\Inertia;
 use Illuminate\Support\Arr;
+use Inertia\Inertia;
 
 class ArticleController extends Controller
 {
@@ -88,6 +86,8 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
+        $this->authorize('update', $article);
+
         $categories = Category::all('id', 'name');
         $tags = Tag::all('id', 'name');
 
