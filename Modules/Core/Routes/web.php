@@ -16,4 +16,5 @@ Route::prefix('admin')
     ->group(function() {
 
     Route::resource('roles', 'RoleController');
+    Route::resource('bread', 'BreadController');
 });
