@@ -85,7 +85,7 @@
                     :href="route('admin.roles.edit', role.id)"
                     tabindex="-1"
                   >
-                    {{ role.guard }}
+                    {{ role.guard_name }}
                   </inertia-link>
                 </td>
                 <td class="border-b border-gray-200 text-sm w-px">
