@@ -34,7 +34,11 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Role/Create');
+        $permissions = Permission::all('id', 'name');
+
+        return Inertia::render('Admin/Role/Create', [
+            'permissions' => $permissions
+        ]);
     }
 
     /**
@@ -47,8 +51,13 @@ class RoleController extends Controller
     {
         $role = Role::create($request->only('name', 'guard_name'));
 
-        return redirect()->back();
-        // return redirect(route('admin.roles.index'))->with('success', 'Role created.');
+        // Attach permissions
+        if(!empty($request->permissions))
+        {
+            $role->syncPermissions($request->permissions);
+        }
+
+        return redirect(route('admin.roles.index'))->with('success', 'Role created.');
     }
 
     /**
@@ -59,8 +68,11 @@ class RoleController extends Controller
      */
     public function edit(Role $role)
     {
+        $permissions = Permission::all('id', 'name');
+
         return Inertia::render('Admin/Role/Edit', [
-            'role' => $role
+            'role' => $role,
+            'permissions' => $permissions
         ]);
     }
 
@@ -75,8 +87,13 @@ class RoleController extends Controller
     {
         $role->update($request->only('name', 'guard_name'));
 
-        return redirect()->back();
-        // return redirect(route('admin.roles.index'))->with('success', 'Role updated.');
+        // Attach permissions
+        if(!empty($request->permissions))
+        {
+            $role->syncPermissions($request->permissions);
+        }
+
+        return redirect(route('admin.roles.index'))->with('success', 'Role updated.');
     }
 
     /**
