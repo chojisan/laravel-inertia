@@ -16,5 +16,6 @@ Route::prefix('admin')
     ->group(function() {
 
     Route::resource('roles', 'RoleController');
+    Route::resource('permissions', 'PermissionController');
     Route::resource('bread', 'BreadController');
 });
