@@ -68,6 +68,16 @@ class User extends Model
     ];
 
     /**
+     * Article id
+     *
+     * @return $id
+     */
+    public function id()
+    {
+        return $this->id;
+    }
+
+    /**
      * A user belongs to an account.
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
