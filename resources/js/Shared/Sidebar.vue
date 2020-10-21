@@ -119,9 +119,18 @@
 
       <jet-responsive-nav-link
         class="mt-1"
+        :href="route('admin.users.index')"
+        :active="$page.currentRouteName == 'admin.users.index'"
+        ><icon name="users" class="w-5 h-5 inline-block" /><span class="mx-3"
+          >Users</span
+        ></jet-responsive-nav-link
+      >
+
+      <jet-responsive-nav-link
+        class="mt-1"
         :href="route('admin.roles.index')"
         :active="$page.currentRouteName == 'admin.roles.index'"
-        ><icon name="clipboard" class="w-5 h-5 inline-block" /><span
+        ><icon name="lock-open" class="w-5 h-5 inline-block" /><span
           class="mx-3"
           >Roles</span
         ></jet-responsive-nav-link
@@ -131,8 +140,7 @@
         class="mt-1"
         :href="route('admin.permissions.index')"
         :active="$page.currentRouteName == 'admin.permissions.index'"
-        ><icon name="clipboard" class="w-5 h-5 inline-block" /><span
-          class="mx-3"
+        ><icon name="key" class="w-5 h-5 inline-block" /><span class="mx-3"
           >Permissions</span
         ></jet-responsive-nav-link
       >
