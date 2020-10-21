@@ -16,6 +16,24 @@ class Article extends Model
     use HasSlug;
 
     /**
+     * Statuses.
+     */
+    const STATUS_PUBLISHED = 'PUBLISHED';
+    const STATUS_DRAFT = 'DRAFT';
+    const STATUS_PENDING = 'PENDING';
+
+    /**
+     * List of statuses.
+     *
+     * @var array
+     */
+    public static $statuses = [
+        ["value" => self::STATUS_PUBLISHED, "name" => self::STATUS_PUBLISHED],
+        ["value" => self::STATUS_DRAFT, "name" => self::STATUS_DRAFT],
+        ["value" => self::STATUS_PENDING, "name" => self::STATUS_PENDING]
+    ];
+
+    /**
      * The table associated with the model.
      *
      * @var string
