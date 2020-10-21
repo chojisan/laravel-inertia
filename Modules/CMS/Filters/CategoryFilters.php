@@ -33,7 +33,7 @@ class CategoryFilters extends Filters
      */
     public function name($name)
     {
-        return $this->builder->where('name', 'like', "%{$title}%" );
+        return $this->builder->where('name', 'like', "%{$name}%" );
     }
 
     /**
