@@ -89,7 +89,7 @@ export default {
       this.confirmingArticleDeletion = true;
     },
     deleteArticle() {
-      this.form.delete(this.route("cms.articles.destroy", this.article.id), {
+      this.form.delete(route("cms.articles.destroy", this.article.id), {
         preserveScroll: true
       });
     }

@@ -58,22 +58,28 @@ export default {
   data() {
     return {
       sending: false,
-      form: this.$inertia.form({
-        _method: "PUT",
-        name: this.category.name,
-        description: this.category.description,
-        parent_id: this.category.parent_id,
-        image: this.category.image,
-        published: this.category.published,
-        category_image_path: this.category.category_image_path
-      })
+      form: this.$inertia.form(
+        {
+          _method: "PUT",
+          name: this.category.name,
+          description: this.category.description,
+          parent_id: this.category.parent_id,
+          image: this.category.image,
+          published: this.category.published,
+          category_image_path: this.category.category_image_path
+        },
+        {
+          bag: "submit",
+          resetOnSuccess: false
+        }
+      )
     };
   },
   methods: {
     submit(form) {
       this.sending = true;
-      this.form
-        .post(this.route("cms.categories.update", this.category.id), form, {
+      form
+        .post(route("cms.categories.update", this.category.id), {
           preserveState: true
         })
         .then(() => (this.sending = false));

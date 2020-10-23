@@ -47,26 +47,32 @@ export default {
   data() {
     return {
       sending: false,
-      form: this.$inertia.form({
-        title: null,
-        featured: null,
-        short_description: null,
-        description: null,
-        category_id: null,
-        tags: [],
-        image: null,
-        meta_description: null,
-        meta_keywords: null,
-        status: null,
-        article_image_path: null
-      })
+      form: this.$inertia.form(
+        {
+          title: null,
+          featured: null,
+          short_description: null,
+          description: null,
+          category_id: null,
+          tags: [],
+          image: null,
+          meta_description: null,
+          meta_keywords: null,
+          status: null,
+          article_image_path: null
+        },
+        {
+          bag: "submit",
+          resetOnSuccess: false
+        }
+      )
     };
   },
   methods: {
     submit(form) {
       this.sending = true;
-      this.form
-        .post(this.route("cms.articles.store"), form, { preserveState: true })
+      form
+        .post(route("cms.articles.store"), { preserveState: true })
         .then(() => (this.sending = false));
     }
   }

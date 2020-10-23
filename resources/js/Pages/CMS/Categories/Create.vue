@@ -43,21 +43,27 @@ export default {
   data() {
     return {
       sending: false,
-      form: this.$inertia.form({
-        name: null,
-        description: null,
-        parent_id: null,
-        image: null,
-        published: 0,
-        category_image_path: null
-      })
+      form: this.$inertia.form(
+        {
+          name: null,
+          description: null,
+          parent_id: null,
+          image: null,
+          published: 0,
+          category_image_path: null
+        },
+        {
+          bag: "submit",
+          resetOnSuccess: false
+        }
+      )
     };
   },
   methods: {
     submit(form) {
       this.sending = true;
-      this.form
-        .post(this.route("cms.categories.store"), form, { preserveState: true })
+      form
+        .post(route("cms.categories.store"), { preserveState: true })
         .then(() => (this.sending = false));
     }
   }

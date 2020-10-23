@@ -41,16 +41,22 @@ export default {
   data() {
     return {
       sending: false,
-      form: this.$inertia.form({
-        name: null
-      })
+      form: this.$inertia.form(
+        {
+          name: null
+        },
+        {
+          bag: "submit",
+          resetOnSuccess: false
+        }
+      )
     };
   },
   methods: {
     submit(form) {
       this.sending = true;
-      this.form
-        .post(this.route("cms.tags.store"), form, { preserveState: true })
+      form
+        .post(route("cms.tags.store"), { preserveState: true })
         .then(() => (this.sending = false));
     }
   }

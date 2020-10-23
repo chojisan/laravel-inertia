@@ -62,27 +62,33 @@ export default {
   data() {
     return {
       sending: false,
-      form: this.$inertia.form({
-        _method: "PUT",
-        title: this.article.title,
-        featured: this.article.featured,
-        short_description: this.article.short_description,
-        description: this.article.description,
-        category_id: this.article.category_id,
-        tags: this.article.tags,
-        image: this.article.image,
-        meta_description: this.article.meta_description,
-        meta_keywords: this.article.meta_keywords,
-        status: this.article.status,
-        article_image_path: this.article.article_image_path
-      })
+      form: this.$inertia.form(
+        {
+          _method: "PUT",
+          title: this.article.title,
+          featured: this.article.featured,
+          short_description: this.article.short_description,
+          description: this.article.description,
+          category_id: this.article.category_id,
+          tags: this.article.tags,
+          image: this.article.image,
+          meta_description: this.article.meta_description,
+          meta_keywords: this.article.meta_keywords,
+          status: this.article.status,
+          article_image_path: this.article.article_image_path
+        },
+        {
+          bag: "submit",
+          resetOnSuccess: false
+        }
+      )
     };
   },
   methods: {
     submit(form) {
       this.sending = true;
-      this.form
-        .put(this.route("cms.articles.update", this.article.id), form, {
+      form
+        .post(route("cms.articles.update", this.article.id), {
           preserveState: true
         })
         .then(() => (this.sending = false));
