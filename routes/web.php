@@ -14,7 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    //return view('welcome');
+    return Inertia\Inertia::render('Site/Home');
+});
+
+Route::get('/articles', function () {
+    //return view('welcome');
+    return Inertia\Inertia::render('Site/Articles/Index');
+});
+
+Route::get('/articles/1', function () {
+    //return view('welcome');
+    return Inertia\Inertia::render('Site/Articles/Show');
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
